@@ -1,0 +1,46 @@
+<div class="example-container">
+
+  <div class="main-div">
+  <mat-card >
+    <mat-card-header>
+      <mat-card-title>{{lbl_login}}</mat-card-title>
+      <mat-card-subtitle>PRUEBA TECNICA</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+      <div class="row">
+        <div class="col contenedor">
+          <form
+            [formGroup]="formLogin"
+            class="form"
+            (submit)="enviarDatos()"
+            novalidate
+          >
+          <mat-form-field>
+            <mat-label>{{lbl_usuario}}</mat-label>
+            <input matInput formControlName="user">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>{{lbl_contrasena}}</mat-label>
+            <input matInput formControlName="pass" [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+
+
+            <button mat-button [disabled]="formLogin.invalid">Enviar</button>
+            <button mat-button>Cancelar</button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+
+    </mat-card-actions>
+  </mat-card>
+
+
+  </div>
+  </div>

@@ -1,0 +1,133 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+}
+
+.btn-warning {
+  color: #212529;
+  background-color: #ffc107 !important;
+  border-color: #ffc107 !important;
+}
+
+.mat_card_header{
+  background-color: rgb(34, 64, 122) !important;
+  color: white !important;
+  padding: 10px;
+}
+
+.expansion-title {
+  padding: 20 px;
+  font-weight: bold !important;
+}
+
+.expansion-panel-header {
+  background-color: rgb(34, 64, 122) !important;
+  color: white !important;
+}
+
+.expansion-panel-header:hover {
+  background: rgb(10, 102, 145) !important;
+  //color: white!;
+}
+
+.expansion-panel-title {
+  color: white !important;
+  font-weight: bold !important;
+}
+.example-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
+}
+
+.example-container .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+.bg-primary-flota {
+  --bs-bg-opacity: 1;
+  background-color: rgb(34, 64, 122);
+}
+
+.example-container {
+  height: 400px;
+  width: auto;
+  overflow: scroll;
+}
+
+table {
+  width: 100%;
+  position: relative;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  width: 15%;
+}
+
+thead tr th {
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  top: 0;
+  background: rgb(10, 102, 145);
+  color: #fff;
+  text-align: center;
+  z-index: 1;
+}
+
+thead th:first-child {
+  left: 0;
+  z-index: 1;
+}
+
+tbody th {
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  left: 0;
+  background: #fff;
+  border-right: 1px solid #ccc;
+}
+
+td {
+  text-align: center;
+}
+
+.mat-button-toggle {
+  background-color: #306cee;
+  color: #141313;
+}
+
+.mat-button-toggle:hover {
+  background-color: transparent;
+  color: #1100ff !important;
+}
+
+.mat-button-toggle-checked {
+  background-color: #ecb92c;
+  color: #1100ff !important;
+}
+
+.example-container-file {
+  height: 200px;
+  width: auto;
+  overflow: scroll;
+}
+
+.example-section {
+  margin: 12px 0;
+}
+
+.example-margin {
+  margin: 0 12px;
+}
+
+ul {
+  list-style-type: none;
+  margin-top: 4px;
+}
