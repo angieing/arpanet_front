@@ -23,13 +23,6 @@ import { MatSort } from '@angular/material/sort';
   styleUrl: './gestion-principal.component.scss'
 })
 export class GestionPrincipalComponent implements OnInit{
-  listVentas : any[]=[];
-  displayedColumns: string[] = ['position', 'fecha', 'subtotal', 'impuestos', 'total', 'cliente', 'vendedor'];
-  dataSource!: MatTableDataSource<any>;
-
-   // @ViewChild(DataTableDirective, { static: false })
-  //dtElements: any = DataTableDirective;
-  //isDtInitializeds: boolean = false;
   constructor(
     public services : ServiciosService,
 
@@ -48,39 +41,27 @@ export class GestionPrincipalComponent implements OnInit{
     }
 
   ngOnInit():void {
-    this.getListVentas();
+
   }
 
-  editar(uno:any,dos:any){}
-  delete(no:any,dos:any){}
+  gestionarVentas(tipo:string){
 
-  getListVentas() {
-    this.services.getVentas().subscribe(
-      (result: any) => {
-        //this.viewDateTableEspanol();
-        this.listVentas = result;
-        this.dataSource = new MatTableDataSource<any>(result);
-      },
-      (error) => {
-        console.log(`Lsita eror:  ${error}`);
-      }
-    );
-  }
-
-  consultar(){
-    alert('se esta consultado ...');
-  }
-
-
-  filtro: any = ''
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value
-    this.dataSource.filter = filterValue.trim().toLowerCase()
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage()
+    if(tipo == 'v'){
+      this.router.navigate(['/', 'gestion-ventas']);
     }
-    this.filtro = filterValue
+
+    if(tipo == 'c'){
+      this.router.navigate(['/', 'gestion-clientes']);
+    }
+
+    if(tipo == 've'){
+      this.router.navigate(['/', 'gestion-vendedores']);
+    }
+
+    if(tipo == 'p'){
+      this.router.navigate(['/', 'gestion-productos']);
+    }
+
   }
 
 }

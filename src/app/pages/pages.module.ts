@@ -40,11 +40,19 @@ import { GestionLoginComponent } from './gestion-login/gestion-login.component';
 import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages.component';
 import { MatPaginator } from '@angular/material/paginator';
+import { GestionClientesComponent } from './gestion-clientes/gestion-clientes.component';
+import { GestionProductosComponent } from './gestion-productos/gestion-productos.component';
+import { GestionVendedoresComponent } from './gestion-vendedores/gestion-vendedores.component';
+import { GestionVentasComponent } from './gestion-ventas/gestion-ventas.component';
 @NgModule({ declarations: [
         TemplateComponent,
         PagesComponent,
         GestionLoginComponent,
         GestionPrincipalComponent,
+        GestionClientesComponent,
+        GestionProductosComponent,
+        GestionVendedoresComponent,
+        GestionVentasComponent,
         SpinerComponent
     ],
     exports: [TemplateComponent], imports: [CommonModule,
