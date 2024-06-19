@@ -10,8 +10,6 @@ import { PagesRoutingModule } from './pages/pages-routing.module';
 import { PagesModule } from './pages/pages.module';
 //import { PagesModule } from './pages/pages.module';
 
-import { DataTablesModule } from "angular-datatables";
-
 @NgModule({
   declarations: [
     AppComponent
@@ -22,7 +20,6 @@ import { DataTablesModule } from "angular-datatables";
     PagesRoutingModule,
     BrowserAnimationsModule,
     MatExpansionModule,
-    DataTablesModule,
     PagesModule
 
   ],
