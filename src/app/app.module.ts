@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { PagesRoutingModule } from './pages/pages-routing.module';
 import { PagesModule } from './pages/pages.module';
 //import { PagesModule } from './pages/pages.module';
+import { MatTableModule } from '@angular/material/table'
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { PagesModule } from './pages/pages.module';
     PagesRoutingModule,
     BrowserAnimationsModule,
     MatExpansionModule,
+    MatTableModule,
     PagesModule
 
   ],

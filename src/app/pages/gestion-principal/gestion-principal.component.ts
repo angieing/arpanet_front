@@ -9,6 +9,13 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ServiciosService } from 'src/app/services/servicios.service';
 //import { DataTableDirective } from 'angular-datatables';
+import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+
+
 
 @Component({
   selector: 'app-gestion-principal',
@@ -17,7 +24,10 @@ import { ServiciosService } from 'src/app/services/servicios.service';
 })
 export class GestionPrincipalComponent implements OnInit{
   listVentas : any[]=[];
- // @ViewChild(DataTableDirective, { static: false })
+  displayedColumns: string[] = ['position', 'fecha', 'subtotal', 'impuestos', 'total', 'cliente', 'vendedor'];
+  dataSource!: MatTableDataSource<any>;
+
+   // @ViewChild(DataTableDirective, { static: false })
   //dtElements: any = DataTableDirective;
   //isDtInitializeds: boolean = false;
   constructor(
@@ -49,6 +59,7 @@ export class GestionPrincipalComponent implements OnInit{
       (result: any) => {
         //this.viewDateTableEspanol();
         this.listVentas = result;
+        this.dataSource = new MatTableDataSource<any>(result);
       },
       (error) => {
         console.log(`Lsita eror:  ${error}`);
@@ -60,5 +71,16 @@ export class GestionPrincipalComponent implements OnInit{
     alert('se esta consultado ...');
   }
 
+
+  filtro: any = ''
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value
+    this.dataSource.filter = filterValue.trim().toLowerCase()
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage()
+    }
+    this.filtro = filterValue
+  }
 
 }

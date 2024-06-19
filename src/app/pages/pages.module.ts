@@ -28,6 +28,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 //import { NgxMaskModule } from 'ngx-mask';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ToastrModule } from 'ngx-toastr';
+import { MatTableModule } from '@angular/material/table';
 
 
 import { MatListModule } from '@angular/material/list';
@@ -38,6 +39,7 @@ import { TemplateComponent } from './components/template/template.component';
 import { GestionLoginComponent } from './gestion-login/gestion-login.component';
 import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages.component';
+import { MatPaginator } from '@angular/material/paginator';
 @NgModule({ declarations: [
         TemplateComponent,
         PagesComponent,
@@ -78,5 +80,7 @@ import { PagesComponent } from './pages.component';
         MatSlideToggleModule,
         MatListModule,
         MatDatepickerModule,
+        MatTableModule,
+        MatPaginator,
         MatToolbarModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class PagesModule {}
