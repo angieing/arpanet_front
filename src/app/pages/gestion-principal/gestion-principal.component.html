@@ -1,1 +1,64 @@
-<p>Aqui lo demas</p>
+<div class="">
+  <label>Consultar </label>
+  <input type="text" name="consulta" />
+  <button
+                  type="button"
+                  data-toggle="modal"
+                  class="btn btn-info btn-round btn-fab btn-sm"
+                  matTooltip="Editar"
+                  [matTooltipPosition]="'below'"
+                  (click)="consultar()"
+                >
+                  <mat-icon>edit</mat-icon>
+                </button>
+
+
+  <table
+  datatable
+
+    id="tabla"
+    class="table table-bordered table-hover"
+  >
+    <caption></caption>
+
+    <thead>
+      <tr>
+        <th>Factura</th>
+        <th>Fecha</th>
+        <th>Vendedor</th>
+        <th>Cliente</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of listVentas; let i = index">
+        <td>{{ p.id }}</td>
+        <td>{{ p.fecha }}</td>
+        <td>{{ p.vendedor }}</td>
+        <td>{{ p.cliente }}</td>
+        <td>
+          <button
+            type="button"
+            data-toggle="modal"
+            class="btn btn-info btn-round btn-fab btn-sm"
+            matTooltip="Editar"
+            [matTooltipPosition]="'below'"
+            (click)="editar(p, p)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+
+          <button
+            type="button"
+            data-toggle="modal"
+            class="btn btn-debug btn-round btn-fab btn-sm"
+            matTooltip="Eliminar"
+            [matTooltipPosition]="'below'"
+            (click)="delete(p,p)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

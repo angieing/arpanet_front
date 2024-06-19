@@ -1,3 +1,4 @@
+import { GestionPrincipalComponent } from './gestion-principal/gestion-principal.component';
 import { CommonModule } from '@angular/common';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -41,6 +42,7 @@ import { PagesComponent } from './pages.component';
         TemplateComponent,
         PagesComponent,
         GestionLoginComponent,
+        GestionPrincipalComponent,
         SpinerComponent
     ],
     exports: [TemplateComponent], imports: [CommonModule,

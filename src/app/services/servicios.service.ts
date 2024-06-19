@@ -14,6 +14,7 @@ export class ServiciosService {
   comercios: any[] = [];
   listaUsuarios: any[] = [];
   login: any[] = [];
+  listaPacientes:any[] = [];
 
   constructor(
     private formularioNuevo: FormBuilder,
@@ -70,6 +71,18 @@ export class ServiciosService {
     let url = `${environment.urlValidarLogin}`;
     return this.http.post(url, '', { params: queryParams }).pipe(
       tap((result: any) => (this.login = result)),
+      map((result: any) => result)
+    );
+  }
+
+   /**
+   * Obtener listado de pacientes actuales
+   * @returns
+   */
+   getVentas(): Observable<any[]> {
+    let url = `${environment.urlListaVentas}`;
+    return this.http.get(url).pipe(
+      tap((result: any) => (this.listaPacientes = result)),
       map((result: any) => result)
     );
   }

@@ -9,8 +9,6 @@ export const environment = {
   urlListaVentas:'http://localhost:9091/ventas/listar',
   urlValidarLogin: 'http://localhost:9091/login/validar-credenciales',
 
-
-
   //etiquetas formularios
   usuario: 'Usuario',
   lbl_pass: 'Ingrese su contraseña',
