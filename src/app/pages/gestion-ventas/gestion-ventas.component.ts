@@ -14,6 +14,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+//import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-gestion-ventas',
@@ -82,5 +83,13 @@ export class GestionVentasComponent implements OnInit{
   }
   regresar(){
     this.router.navigate(['/', 'gestion-principal'])
+  }
+
+   /**
+   * Cierra modales
+   * @param modal
+   */
+  cerrarModal(modal: any) {
+    //this.modal.dismissAll(modal);
   }
 }

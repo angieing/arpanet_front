@@ -123,3 +123,27 @@
   </table>
   </div>
   <button (click)="regresar()">Regresar</button>
+
+  <ng-template #ModalVendas let-modal>
+    <div class="modal-header">
+      <h2 class="modal-title">EditaR</h2>
+
+      <button
+        mat-raised-button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="cerrarModal(ModalVendas)"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body"></div>
+    <div class="modal-footer">
+      <button mat-raised-button (click)="cerrarModal(ModalVendas)">
+        Cerrar
+      </button>
+    </div>
+  </ng-template>
+
+  <app-spiner></app-spiner>
