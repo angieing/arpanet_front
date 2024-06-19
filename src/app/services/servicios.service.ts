@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -12,6 +12,8 @@ import { environment } from 'src/environments/environment';
 export class ServiciosService {
 
   comercios: any[] = [];
+  listaUsuarios: any[] = [];
+  login: any[] = [];
 
   constructor(
     private formularioNuevo: FormBuilder,
@@ -50,6 +52,25 @@ export class ServiciosService {
     return this.http.get(url).pipe(
       tap((result:any) => (this.comercios = result)),
       map((result:any) => result)
+    );
+  }
+
+  getUsuariosTodos() {
+    let url = `${environment.urlListaVentas}`;
+    return this.http.get(url).pipe(
+      tap((result: any) => (this.listaUsuarios = result)),
+      map((result: any) => result)
+    );
+  }
+
+  validarCredenciales(usuario: string, password: string) {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('usuario', usuario);
+    queryParams = queryParams.append('password', password);
+    let url = `${environment.urlValidarLogin}`;
+    return this.http.post(url, '', { params: queryParams }).pipe(
+      tap((result: any) => (this.login = result)),
+      map((result: any) => result)
     );
   }
 }
