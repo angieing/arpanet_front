@@ -1,3 +1,4 @@
+import { GestionPrincipalComponent } from './gestion-principal/gestion-principal.component';
 import { NgModule } from '@angular/core';
 ///import { RouterModule, Routes } from '@angular/router';
 import { RouterModule, Routes } from '@angular/router';
@@ -15,6 +16,12 @@ const routes: Routes = [
       {
         path: 'login',
         component: GestionLoginComponent,
+        data: { showRootComponents: true}
+      },
+
+      {
+        path: 'gestion-principal',
+        component: GestionPrincipalComponent,
         data: { showRootComponents: true}
       }
       //{ path: '', redirectTo: '/inicio', pathMatch: 'full' },

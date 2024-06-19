@@ -52,11 +52,11 @@ export class GestionLoginComponent implements OnInit{
       (result:any)=>{
         this.spinner.hide();
         console.log('entra correcto', result);
-        localStorage.setItem('rolUser',result.obj[0].nombre);
+        //localStorage.setItem('rolUser',result.obj[0].nombre);
         this.router.navigate(['/', 'gestion-principal']);
-        localStorage.setItem('user', this.formLogin.get('user').value);
-        localStorage.setItem('token', result.token);
-        localStorage.setItem('creado','ok');
+        //localStorage.setItem('user', this.formLogin.get('user').value);
+        //localStorage.setItem('token', result.token);
+        //localStorage.setItem('creado','ok');
       },
       (error)=>{
         console.log('entra incorrecto');
