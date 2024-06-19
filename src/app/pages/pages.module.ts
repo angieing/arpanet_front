@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
@@ -38,51 +38,45 @@ import { GenerarTurnosComponent } from './generar-turnos/generar-turnos.componen
 import { GestionLoginComponent } from './gestion-login/gestion-login.component';
 import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages.component';
-@NgModule({
-  declarations: [
-    TemplateComponent,
-    PagesComponent,
-    GestionLoginComponent,
-    GenerarTurnosComponent,
-    SpinerComponent
-  ],
-  imports: [
-    CommonModule,
-    //ComponentsModule,
-    PagesRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatCardModule,
-    MatSelectModule,
-    //NgSelectModule,
-    MatFormFieldModule,
-    MatGridListModule,
-    MatCheckboxModule,
-    MatButtonToggleModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatDividerModule,
-    HttpClientModule,
-    //DataTablesModule,
-    ToastrModule.forRoot(),
-    MatIconModule,
-    MatTooltipModule,
-    MatBottomSheetModule,
-    MatDialogModule,
-    MatRadioModule,
-    MatButtonModule,
-    MatProgressSpinnerModule,
-    NgxSpinnerModule,
-    //NgxMaskModule.forRoot(),
-    MatProgressBarModule,
-    MatExpansionModule,
-    MatTabsModule,
-    MatSlideToggleModule,
-    MatListModule,
-    MatDatepickerModule,
-    MatToolbarModule
-  ],
-  exports: [TemplateComponent],
-})
+@NgModule({ declarations: [
+        TemplateComponent,
+        PagesComponent,
+        GestionLoginComponent,
+        GenerarTurnosComponent,
+        SpinerComponent
+    ],
+    exports: [TemplateComponent], imports: [CommonModule,
+        //ComponentsModule,
+        PagesRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatCardModule,
+        MatSelectModule,
+        //NgSelectModule,
+        MatFormFieldModule,
+        MatGridListModule,
+        MatCheckboxModule,
+        MatButtonToggleModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatDividerModule,
+        //DataTablesModule,
+        ToastrModule.forRoot(),
+        MatIconModule,
+        MatTooltipModule,
+        MatBottomSheetModule,
+        MatDialogModule,
+        MatRadioModule,
+        MatButtonModule,
+        MatProgressSpinnerModule,
+        NgxSpinnerModule,
+        //NgxMaskModule.forRoot(),
+        MatProgressBarModule,
+        MatExpansionModule,
+        MatTabsModule,
+        MatSlideToggleModule,
+        MatListModule,
+        MatDatepickerModule,
+        MatToolbarModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class PagesModule {}
