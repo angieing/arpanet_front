@@ -113,18 +113,35 @@
       <td mat-cell *matCellDef="let element"> {{element.vendedor}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="opciones">
+      <th mat-header-cell *matHeaderCellDef> Opciones </th>
+      <td mat-cell *matCellDef="let element" > <button
+        type="button"
+        data-toggle="modal"
+        class="btn btn-info btn-round btn-fab btn-sm"
+        matTooltip="Editar"
+        [matTooltipPosition]="'below'"
+        (click)="editar2(element, ModalVentas)"
+      >
+        <mat-icon>edit</mat-icon>
+      </button> </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-    <!-- Row shown when there is no matching data. -->
+
+     <!-- Row shown when there is no matching data. -->
     <tr class="mat-row" *matNoDataRow>
       <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
     </tr>
+
+
   </table>
   </div>
   <button (click)="regresar()">Regresar</button>
 
-  <ng-template #ModalVendas let-modal>
+  <ng-template #ModalVentas let-modal>
     <div class="modal-header">
       <h2 class="modal-title">EditaR</h2>
 
@@ -133,17 +150,270 @@
         type="button"
         class="close"
         aria-label="Close"
-        (click)="cerrarModal(ModalVendas)"
+        (click)="cerrarModal(ModalVentas)"
       >
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body"></div>
     <div class="modal-footer">
-      <button mat-raised-button (click)="cerrarModal(ModalVendas)">
+      <button mat-raised-button (click)="cerrarModal(ModalVentas)">
         Cerrar
       </button>
     </div>
   </ng-template>
+
+
+
+  <div>
+    <form
+      [formGroup]="formRegistro"
+      class="form"
+      (submit)="registrar()"
+      id="{{ idForm }}"
+      novalidate
+    >
+      <div class="row">
+        <div class="col">
+          <mat-form-field hintLabel="Max 10 caracteres">
+            <mat-label>Factura</mat-label>
+            <input
+              matInput
+              #idfactura
+              required="true"
+              formControlName="idfactura"
+            />
+          </mat-form-field>
+
+          <div *ngIf="formRegistro.controls['idfactura'].errors">
+            <mat-error
+              *ngIf="formRegistro.controls['idfactura'].errors?.required"
+            >
+              <p style="color: F44336">Debe ingresar datos.</p>
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="col">
+          <mat-form-field color="accent">
+            <mat-label>Fecha</mat-label>
+            <input
+              readonly="true"
+              required="true"
+              matInput
+              [matDatepicker]="picker1"
+              formControlName="fecha"
+              [(ngModel)]="age"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker1"
+            ></mat-datepicker-toggle>
+            <mat-datepicker
+              #picker1
+              color="primary"
+
+            ></mat-datepicker>
+            <mat-error
+              *ngIf="
+                formRegistro.controls['fecha'].errors?.required
+              "
+            >
+              Se debe seleccionar una fecha
+            </mat-error>
+          </mat-form-field>
+
+        </div>
+
+        <div class="col">
+          <mat-form-field hintLabel="Max 10 caracteres">
+            <mat-label>Subtotal</mat-label>
+            <input
+              matInput
+              #subtotal
+              required="true"
+              formControlName="subtotal"
+            />
+          </mat-form-field>
+
+          <div *ngIf="formRegistro.controls['subtotal'].errors">
+            <mat-error
+              *ngIf="formRegistro.controls['subtotal'].errors?.required"
+            >
+              <p style="color: F44336">Debe ingresar datos.</p>
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="col">
+          <mat-form-field hintLabel="Max 10 caracteres">
+            <mat-label>Impuestos</mat-label>
+            <input
+              matInput
+              #impuestos
+              required="true"
+              formControlName="impuestos"
+            />
+          </mat-form-field>
+
+          <div *ngIf="formRegistro.controls['impuestos'].errors">
+            <mat-error
+              *ngIf="formRegistro.controls['impuestos'].errors?.required"
+            >
+              <p style="color: F44336">Debe ingresar datos.</p>
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="col">
+          <mat-form-field hintLabel="Max 10 caracteres">
+            <mat-label>Total</mat-label>
+            <input
+              matInput
+              #total
+              required="true"
+              formControlName="total"
+            />
+          </mat-form-field>
+
+          <div *ngIf="formRegistro.controls['total'].errors">
+            <mat-error
+              *ngIf="formRegistro.controls['total'].errors?.required"
+            >
+              <p style="color: F44336">Debe ingresar datos.</p>
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="col">
+          <mat-form-field hintLabel="Max 10 caracteres">
+            <mat-label>Total</mat-label>
+            <input
+              matInput
+              #total
+              required="true"
+              formControlName="total"
+            />
+          </mat-form-field>
+
+          <div *ngIf="formRegistro.controls['total'].errors">
+            <mat-error
+              *ngIf="formRegistro.controls['total'].errors?.required"
+            >
+              <p style="color: F44336">Debe ingresar datos.</p>
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="example-full-width">
+            <mat-label>Cliente</mat-label>
+            <input
+              type="text"
+              matInput
+              formControlName="cliente"
+              placeholder="Cliente"
+            />
+
+          </mat-form-field>
+          <div *ngIf="formRegistro.controls['cliente'].errors">
+            <mat-error
+              *ngIf="formRegistro.controls['cliente'].errors?.required"
+            >
+              <p style="color: F44336">Debe ingresar datos.</p>
+            </mat-error>
+          </div>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <mat-label>Vendedor</mat-label>
+            <input
+              formControlName="vendedor"
+              matInput
+              type="number"
+              #inputC
+              placeholder="Documento de vendedor"
+              required="true"
+
+            />
+            <mat-error
+              *ngIf="formRegistro.controls['vendedor'].errors?.required"
+            >
+              Se debe ingresar un datos
+            </mat-error>
+          </mat-form-field>
+          <div *ngIf="formRegistro.controls['vendedor'].errors">
+            <mat-error
+              *ngIf="formRegistro.controls['vendedor'].errors?.required"
+            >
+              <p style="color: F44336">Debe ingresar datos.</p>
+            </mat-error>
+          </div>
+        </div>
+        <div class="col">
+          <mat-label>Tipo Vendedor</mat-label>
+          <mat-form-field hintLabel="Max 10 caracteres">
+            <input matInput #nombres formControlName="tipo_vendedor" />
+          </mat-form-field>
+
+          <div *ngIf="formRegistro.controls['tipo_vendedor'].errors">
+            <mat-error
+              *ngIf="formRegistro.controls['tipo_vendedor'].errors?.required"
+            >
+              <p style="color: F44336">Debe ingresar datos.</p>
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="col">
+          <mat-label>Tipo Cliente</mat-label>
+          <mat-form-field hintLabel="Max 10 caracteres">
+            <input matInput #nombres formControlName="tipo_cliente" />
+          </mat-form-field>
+
+          <div *ngIf="formRegistro.controls['tipo_cliente'].errors">
+            <mat-error
+              *ngIf="formRegistro.controls['tipo_cliente'].errors?.required"
+            >
+              <p style="color: F44336">Debe ingresar datos.</p>
+            </mat-error>
+          </div>
+        </div>
+
+
+      </div>
+    </form>
+    <div>
+      <button
+
+        [disabled]="formRegistro.invalid"
+        class="btn btn-primary btn-sm"
+        type="submit"
+        [attr.form]="idForm"
+
+      >
+        Crear
+      </button>
+      <button
+
+        [disabled]="formRegistro.invalid"
+        class="btn btn-secondary btn-sm"
+        type="submit"
+
+        [attr.form]="idForm"
+      >
+        Actualizar
+      </button>
+
+      <button
+
+        class="btn btn-warning btn-sm"
+        type="submit"
+
+      >
+        Limpiar
+      </button>
+    </div>
+  </div>
 
   <app-spiner></app-spiner>

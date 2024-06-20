@@ -9,7 +9,8 @@ import { AppComponent } from './app.component';
 import { PagesRoutingModule } from './pages/pages-routing.module';
 import { PagesModule } from './pages/pages.module';
 //import { PagesModule } from './pages/pages.module';
-import { MatTableModule } from '@angular/material/table'
+import { MatTableModule } from '@angular/material/table';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MatTableModule } from '@angular/material/table'
     BrowserAnimationsModule,
     MatExpansionModule,
     MatTableModule,
-    PagesModule
+    PagesModule,
+    NgbModule
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

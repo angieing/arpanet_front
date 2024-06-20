@@ -33,12 +33,17 @@ export class ServiciosService {
   }
 
   //form login
-  cargarFormTurnos(): FormGroup{
+  cargarFormVentas(): FormGroup{
     return this.formularioNuevo.group({
-      comercios: [],
-      servicios:[],
-      fechaInicial:[],
-      fechaFinal:[]
+      idfactura: [],
+      fecha:[],
+      subtotal:[],
+      impuestos:[],
+      total:[],
+      cliente:[],
+      vendedor:[],
+      tipo_vendedor:[],
+      tipo_cliente:[]
     });
   }
 

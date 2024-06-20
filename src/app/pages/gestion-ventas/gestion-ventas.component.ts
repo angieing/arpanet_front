@@ -14,7 +14,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-//import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-gestion-ventas',
@@ -23,8 +23,11 @@ import { MatSort } from '@angular/material/sort';
 })
 export class GestionVentasComponent implements OnInit{
   listVentas : any[]=[];
-  displayedColumns: string[] = ['position', 'fecha', 'subtotal', 'impuestos', 'total', 'cliente', 'vendedor'];
+  displayedColumns: string[] = ['position', 'fecha', 'subtotal', 'impuestos', 'total', 'cliente', 'vendedor', 'opciones'];
   dataSource!: MatTableDataSource<any>;
+  formRegistro: any;
+  idForm: string = 'idForm';
+  age:any;
 
    // @ViewChild(DataTableDirective, { static: false })
   //dtElements: any = DataTableDirective;
@@ -35,7 +38,7 @@ export class GestionVentasComponent implements OnInit{
     private route : ActivatedRoute,
     private spinner : NgxSpinnerService,
     //private serviceAuth : AutenticacionService,
-    //private modal : NgbModal,
+    private modal : NgbModal,
     private changeDetector: ChangeDetectorRef,
     /*config: NgbModalConfig*/
 
@@ -47,8 +50,11 @@ export class GestionVentasComponent implements OnInit{
     }
 
   ngOnInit():void {
+    this.formRegistro = this.services.cargarFormVentas();
     this.getListVentas();
   }
+
+  registrar(){}
 
   editar(uno:any,dos:any){}
   delete(no:any,dos:any){}
@@ -90,6 +96,21 @@ export class GestionVentasComponent implements OnInit{
    * @param modal
    */
   cerrarModal(modal: any) {
-    //this.modal.dismissAll(modal);
+    this.modal.dismissAll(modal);
+  }
+
+  editar2(form: any , modal: any){
+    console.log(form);
+    for (let obj in form) {
+
+      for (let f in this.formRegistro.value) {
+        console.log(obj);
+        if (f == obj) {
+          this.formRegistro.get(obj).setValue(form[obj]);
+        }
+
+      }
+    }
+    this.modal.open(modal, { size: 'xl', scrollable: true, backdrop: 'static', keyboard:false });
   }
 }
