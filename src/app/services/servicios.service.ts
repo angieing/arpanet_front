@@ -1,8 +1,10 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup , Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, map, tap } from 'rxjs';
+
+
 import { environment } from 'src/environments/environment';
 //import { Router } from '@angular/router';
 
@@ -18,6 +20,7 @@ export class ServiciosService {
 
   constructor(
     private formularioNuevo: FormBuilder,
+    private formularioVendedores: FormBuilder,
     private formularioTurnos: FormBuilder,
     private http: HttpClient,
     private router: Router
@@ -44,6 +47,19 @@ export class ServiciosService {
       vendedor:[],
       tipo_vendedor:[],
       tipo_clientes:[]
+    });
+  }
+
+  //form vendedores
+  cargarFormVededores(): FormGroup{
+    return this.formularioVendedores.group({
+      id: [],
+      tipoIdentificacion:[],
+      nombres:[],
+      apellidos:[],
+      direccion:[],
+      telefono:[],
+      correo:['', Validators.compose([Validators.required, Validators.email])]
     });
   }
 
@@ -81,7 +97,7 @@ export class ServiciosService {
   }
 
    /**
-   * Obtener listado de pacientes actuales
+   * Obtener listado de ventas actuales
    * @returns
    */
    getVentas(): Observable<any[]> {
@@ -93,6 +109,8 @@ export class ServiciosService {
   }
 
 
+
+
   registroVentas:any[] = [];
 /**
  * Metodo para registrar ventas en oracle
@@ -102,7 +120,7 @@ export class ServiciosService {
  * @returns
  */
   registrarVentas(form: any) {
-   console.log('MOSTAR: ',form.value);
+   console.log('MOSTRAR: ',form.value);
     let items = Object.assign(form.value);
     let url = `${environment.urlRegistrarVentas}`;
     console.log('URL: ',url);
@@ -112,5 +130,36 @@ export class ServiciosService {
         );
   }
 
+  listaVendedores:any[] = [];
+     /**
+   * Obtener listado de vendedores actuales
+   * @returns
+   */
+     getVendedores(): Observable<any[]> {
+      let url = `${environment.urlListarVendedores}`;
+      return this.http.get(url).pipe(
+        tap((result: any) => (this.listaVendedores = result)),
+        map((result: any) => result)
+      );
+    }
+
+  registroVendedores:any[] = [];
+  /**
+ * Metodo para registrar vendedores en oracle
+ * @param form
+ * @param token
+ * @param tipo
+ * @returns
+ */
+  registrarVendedores(form: any) {
+    console.log('MOSTRAR: ',form.value);
+     let items = Object.assign(form.value);
+     let url = `${environment.urlRegistrarVendedores}`;
+     console.log('URL: ',url);
+     return this.http.post(url, items).pipe(
+           tap((result: any) => (this.registroVendedores = result)),
+           map((result: any) => result)
+         );
+   }
 
 }
