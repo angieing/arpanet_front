@@ -11,6 +11,9 @@ export const environment = {
   urlRegistrarVentas: 'http://localhost:9091/ventas/crear',
   urlRegistrarVendedores: 'http://localhost:9091/vendedores/crear',
   urlListarVendedores: 'http://localhost:9091/vendedores/listar',
+  urlRegistrarClientes: 'http://localhost:9091/clientes/crear',
+  urlListarClientes: 'http://localhost:9091/clientes/listar',
+
 
   //etiquetas formularios
   usuario: 'Usuario',

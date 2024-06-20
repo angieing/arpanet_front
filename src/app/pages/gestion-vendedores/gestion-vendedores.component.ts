@@ -39,8 +39,6 @@ export class GestionVendedoresComponent implements OnInit{
     this.getListVendedores();
   }
 
-
-
   /**
    * Método de formulario de registro
    *
@@ -56,6 +54,11 @@ export class GestionVendedoresComponent implements OnInit{
     );
   }
 
+  /**
+   * Método de listar vendedores
+   *
+   */
+
   getListVendedores(){
     this.services.getVendedores().subscribe(
       (result: any) => {
@@ -70,13 +73,13 @@ export class GestionVendedoresComponent implements OnInit{
 
   }
 
-
   /**
    *
    * Método para filtrar
    * Requerimiento funcional RF09  Gestión Vendedores
    *
    */
+
   filtro: any = ''
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value
@@ -88,6 +91,7 @@ export class GestionVendedoresComponent implements OnInit{
     this.filtro = filterValue
   }
 
+  /**Método para botón de regresar */
 
   regresar(){
 
@@ -103,7 +107,7 @@ export class GestionVendedoresComponent implements OnInit{
     this.modal.dismissAll(modal);
   }
 
-
+  /**Método para botón editar */
 
   editar2(form: any , modal: any){
     console.log(form);

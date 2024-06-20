@@ -21,6 +21,7 @@ export class ServiciosService {
   constructor(
     private formularioNuevo: FormBuilder,
     private formularioVendedores: FormBuilder,
+    private formularioClientes: FormBuilder,
     private formularioTurnos: FormBuilder,
     private http: HttpClient,
     private router: Router
@@ -35,7 +36,7 @@ export class ServiciosService {
     });
   }
 
-  //form login
+  //form ventas
   cargarFormVentas(): FormGroup{
     return this.formularioNuevo.group({
       id: [],
@@ -63,12 +64,25 @@ export class ServiciosService {
     });
   }
 
+  //form clientes
+  cargarFormClientes(): FormGroup{
+    return this.formularioClientes.group({
+      id: [],
+      tipoIdentificacion:[],
+      nombres:[],
+      apellidos:[],
+      direccion:[],
+      telefono:[],
+      correo:['', Validators.compose([Validators.required, Validators.email])]
+    });
+  }
+
   //servicios
   /**
    *
    * @returns Obtener listado de comercios
    */
-
+/*
   getComercios():Observable<any[]>{
     let url = `${environment.urlApiListarComercios}`;
     return this.http.get(url).pipe(
@@ -76,6 +90,8 @@ export class ServiciosService {
       map((result:any) => result)
     );
   }
+
+  */
 
   getUsuariosTodos() {
     let url = `${environment.urlListaVentas}`;
@@ -145,12 +161,12 @@ export class ServiciosService {
 
   registroVendedores:any[] = [];
   /**
- * Metodo para registrar vendedores en oracle
- * @param form
- * @param token
- * @param tipo
- * @returns
- */
+   * Metodo para registrar vendedores en oracle
+   * @param form
+   * @param token
+   * @param tipo
+   * @returns
+   */
   registrarVendedores(form: any) {
     console.log('MOSTRAR: ',form.value);
      let items = Object.assign(form.value);
@@ -161,5 +177,39 @@ export class ServiciosService {
            map((result: any) => result)
          );
    }
+
+   listaClientes:any[] = [];
+     /**
+   * Obtener listado de clientes actuales
+   * @returns
+   */
+     getClientes(): Observable<any[]> {
+      let url = `${environment.urlListarClientes}`;
+      return this.http.get(url).pipe(
+        tap((result: any) => (this.listaClientes = result)),
+        map((result: any) => result)
+      );
+    }
+
+  registroClientes:any[] = [];
+  /**
+   * Metodo para registrar vendedores en oracle
+   * @param form
+   * @param token
+   * @param tipo
+   * @returns
+   */
+  registrarClientes(form: any) {
+    console.log('MOSTRAR: ',form.value);
+     let items = Object.assign(form.value);
+     let url = `${environment.urlRegistrarClientes}`;
+     console.log('URL: ',url);
+     return this.http.post(url, items).pipe(
+           tap((result: any) => (this.registroClientes = result)),
+           map((result: any) => result)
+         );
+   }
+
+
 
 }

@@ -2,7 +2,7 @@
 
 <div>
   <mat-form-field>
-    <mat-label>Filter</mat-label>
+    <mat-label>Filtro</mat-label>
     <input
       matInput
       (keyup)="applyFilter($event)"
@@ -96,11 +96,11 @@
     <div class="row">
       <div class="col">
         <mat-form-field hintLabel="Max 10 caracteres">
-          <mat-label>Vendedor</mat-label>
+          <mat-label>N&uacute;mero identificaci&oacute;n</mat-label>
           <input
             matInput
             #id
-            required="false"
+            required="true"
             readonly="false"
             formControlName="id"
           />
@@ -134,7 +134,7 @@
       </div>
 
       <div class="col">
-        <mat-form-field hintLabel="Max 10 caracteres">
+        <mat-form-field hintLabel="Max 50 caracteres">
           <mat-label>Nombres</mat-label>
           <input matInput #nombres required="true" formControlName="nombres" />
         </mat-form-field>
@@ -194,6 +194,7 @@
             matInput
             formControlName="telefono"
             placeholder="Teléfono"
+            required="true"
           />
         </mat-form-field>
         <div *ngIf="formRegistro.controls['telefono'].errors">
@@ -202,6 +203,7 @@
           </mat-error>
         </div>
       </div>
+
       <div class="col">
         <mat-form-field class="example-full-width">
           <mat-label>Correo Electrónico</mat-label>
@@ -210,6 +212,7 @@
             matInput
             formControlName="correo"
             placeholder="xxxx@example.com"
+            required="true"
           />
 
           <mat-error> Ingrese un email valido! </mat-error>
@@ -223,6 +226,7 @@
       </div>
     </div>
   </form>
+
   <div>
     <button
       [disabled]="formRegistro.invalid"
