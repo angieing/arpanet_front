@@ -224,49 +224,41 @@
 
 
         <div class="col">
-          <mat-form-field class="example-full-width">
-            <mat-label>Cliente</mat-label>
-            <input
-              type="text"
-              matInput
-              formControlName="cliente"
-              placeholder="Cliente"
-            />
-
-          </mat-form-field>
-          <div *ngIf="formRegistro.controls['cliente'].errors">
+          <mat-form-field>
+            <mat-label>Clientes</mat-label>
+            <mat-select formControlName="cliente" placeholder="Clientes">
+              <mat-option
+                style="z-index: 99999"
+                *ngFor="let ite of listClientes"
+                [value]="ite.id"
+                >{{ ite.nombres }}
+              </mat-option>
+            </mat-select>
             <mat-error
               *ngIf="formRegistro.controls['cliente'].errors?.required"
             >
-              <p style="color: F44336">Debe ingresar datos.</p>
+              <span> Se debe seleccionar una opci&oacute;n</span>
             </mat-error>
-          </div>
+          </mat-form-field>
         </div>
+
         <div class="col">
           <mat-form-field>
             <mat-label>Vendedor</mat-label>
-            <input
-              formControlName="vendedor"
-              matInput
-              type="number"
-              #inputC
-              placeholder="Documento de vendedor"
-              required="true"
-
-            />
+            <mat-select formControlName="vendedor" placeholder="vendedor">
+              <mat-option
+                style="z-index: 99999"
+                *ngFor="let ite of listClientes"
+                [value]="ite.id"
+                >{{ ite.nombres }}
+              </mat-option>
+            </mat-select>
             <mat-error
               *ngIf="formRegistro.controls['vendedor'].errors?.required"
             >
-              Se debe ingresar un datos
+              <span> Se debe seleccionar una opci&oacute;n</span>
             </mat-error>
           </mat-form-field>
-          <div *ngIf="formRegistro.controls['vendedor'].errors">
-            <mat-error
-              *ngIf="formRegistro.controls['vendedor'].errors?.required"
-            >
-              <p style="color: F44336">Debe ingresar datos.</p>
-            </mat-error>
-          </div>
         </div>
         <div class="col">
           <mat-label>Tipo Vendedor</mat-label>

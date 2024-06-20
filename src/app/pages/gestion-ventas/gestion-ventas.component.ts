@@ -52,6 +52,8 @@ export class GestionVentasComponent implements OnInit{
   ngOnInit():void {
     this.formRegistro = this.services.cargarFormVentas();
     this.getListVentas();
+    this.getListClientes();
+    this.getListVendedores();
   }
 
   registrar(){
@@ -76,6 +78,32 @@ export class GestionVentasComponent implements OnInit{
         //this.viewDateTableEspanol();
         this.listVentas = result;
         this.dataSource = new MatTableDataSource<any>(result);
+      },
+      (error) => {
+        console.log(`Lsita eror:  ${error}`);
+      }
+    );
+  }
+
+  listClientes:any[]=[];
+  getListClientes(){
+    this.services.getClientes().subscribe(
+      (result: any) => {
+        //this.viewDateTableEspanol();
+        this.listClientes = result;
+      },
+      (error) => {
+        console.log(`Lsita eror:  ${error}`);
+      }
+    );
+  }
+
+  listVendedores:any[]=[];
+  getListVendedores(){
+    this.services.getVendedores().subscribe(
+      (result: any) => {
+        //this.viewDateTableEspanol();
+        this.listVendedores = result;
       },
       (error) => {
         console.log(`Lsita eror:  ${error}`);
