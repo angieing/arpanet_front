@@ -35,7 +35,7 @@ export class ServiciosService {
   //form login
   cargarFormVentas(): FormGroup{
     return this.formularioNuevo.group({
-      idfactura: [],
+      id: [],
       fecha:[],
       subtotal:[],
       impuestos:[],
@@ -43,7 +43,7 @@ export class ServiciosService {
       cliente:[],
       vendedor:[],
       tipo_vendedor:[],
-      tipo_cliente:[]
+      tipo_clientes:[]
     });
   }
 
@@ -91,4 +91,26 @@ export class ServiciosService {
       map((result: any) => result)
     );
   }
+
+
+  registroVentas:any[] = [];
+/**
+ * Metodo para registrar ventas en oracle
+ * @param form
+ * @param token
+ * @param tipo
+ * @returns
+ */
+  registrarVentas(form: any) {
+   console.log('MOSTAR: ',form.value);
+    let items = Object.assign(form.value);
+    let url = `${environment.urlRegistrarVentas}`;
+    console.log('URL: ',url);
+    return this.http.post(url, items).pipe(
+          tap((result: any) => (this.registroVentas = result)),
+          map((result: any) => result)
+        );
+  }
+
+
 }

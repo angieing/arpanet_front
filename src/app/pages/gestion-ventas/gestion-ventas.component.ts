@@ -54,7 +54,18 @@ export class GestionVentasComponent implements OnInit{
     this.getListVentas();
   }
 
-  registrar(){}
+  registrar(){
+
+    this.services.registrarVentas(this.formRegistro).subscribe(
+      (result:any)=>{
+        console.log('============>', result);
+      },
+      (error)=>{
+        console.log('=======error=====>', error);
+      }
+    );
+
+  }
 
   editar(uno:any,dos:any){}
   delete(no:any,dos:any){}
@@ -112,5 +123,13 @@ export class GestionVentasComponent implements OnInit{
       }
     }
     this.modal.open(modal, { size: 'xl', scrollable: true, backdrop: 'static', keyboard:false });
+  }
+
+  limpiar(){
+    this.formRegistro.reset();
+  }
+
+  crear(tipo:string ){
+    alert(tipo);
   }
 }

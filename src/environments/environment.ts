@@ -8,7 +8,7 @@ export const environment = {
   urlApiListarComercios: 'http://localhost:8085/api/tecnica/listarcomercios',
   urlListaVentas:'http://localhost:9091/ventas/listar',
   urlValidarLogin: 'http://localhost:9091/login/validar-credenciales',
-
+  urlRegistrarVentas: 'http://localhost:9091/ventas/crear',
   //etiquetas formularios
   usuario: 'Usuario',
   lbl_pass: 'Ingrese su contraseña',
