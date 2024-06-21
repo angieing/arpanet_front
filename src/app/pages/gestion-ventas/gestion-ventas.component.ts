@@ -287,4 +287,12 @@ export class GestionVentasComponent implements OnInit{
         
    
      }
+
+     ///
+     calcularTotalImpuesto(event: Event){   
+      let valorSubtotal = this.formRegistro.value.subtotal;     
+      let imp =this.formRegistro.value.impuestos;//(event.target as HTMLInputElement).value
+      let resultado = parseInt(valorSubtotal) + (parseInt(imp));      
+      this.formRegistro.get('total').setValue(resultado);
+     }
 }
