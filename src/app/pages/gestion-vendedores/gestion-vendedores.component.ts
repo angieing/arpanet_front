@@ -93,7 +93,7 @@ export class GestionVendedoresComponent implements OnInit {
     console.log('=====>', this.formRegistro.value.id);
     if (this.formRegistro.pristine) {
       console.log('Sin cambios');
-      this.toastr.info('No ha cambiado nada');
+      Swal.fire({ icon: 'info', title: 'No ha hecho ajustes', text: '!' });
     } else {
       if (this.actualizarR) {
         this.services.actualizaVendedor(this.formRegistro).subscribe(
@@ -101,6 +101,7 @@ export class GestionVendedoresComponent implements OnInit {
             console.log('============>', resultup);
             Swal.fire({icon: 'info', title: 'Actualizado correctamente',  text: 'ok'});             
             this.getListVendedores();
+            this.formRegistro.reset();
           },
           (errorup) => {
             console.log('=======ERROR=====>', errorup);
@@ -113,6 +114,7 @@ export class GestionVendedoresComponent implements OnInit {
           (result: any) => {
             console.log('============>', result);
             this.getListVendedores();
+            this.formRegistro.reset();
             Swal.fire({icon: 'info', title: 'Registrado correctamente',  text: 'ok'});             
           },
           (error) => {

@@ -4,7 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { TiposIdentificacion } from 'src/app/modelos/Entidades';
 import { ServiciosService } from 'src/app/services/servicios.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-gestion-clientes',
@@ -12,28 +14,49 @@ import { ServiciosService } from 'src/app/services/servicios.service';
   styleUrl: './gestion-clientes.component.scss'
 })
 export class GestionClientesComponent {
-  listClientes : any[]=[];
-  displayedColumns: string[] = ['tipo','identificacion', 'nombres', 'apellidos', 'direccion', 'telefono', 'correo',  'opciones'];
+  listClientes: any[] = [];
+  displayedColumns: string[] = ['tipo', 'identificacion', 'nombres', 'apellidos', 'direccion', 'telefono', 'correo', 'opciones'];
   dataSource!: MatTableDataSource<any>;
   formRegistro: any;
   idForm: string = 'idForm';
-  age:any;
-  constructor(
-    public services : ServiciosService,
+  age: any;
+  campoIdentificacion:boolean = false;
 
-    private route : ActivatedRoute,
-    private spinner : NgxSpinnerService,
+  listTipoIdentificacion: TiposIdentificacion[] = [
+    {
+      id: '0',
+      nombre: 'CC',
+    },
+    {
+      id: '1',
+      nombre: 'NIT',
+    },
+    {
+      id: '2',
+      nombre: 'CE',
+    },
+    {
+      id: '3',
+      nombre: 'PEP',
+    },
+  ];
+
+
+  constructor(
+    public services: ServiciosService,
+
+    private route: ActivatedRoute,
+    private spinner: NgxSpinnerService,
     //private serviceAuth : AutenticacionService,
-    private modal : NgbModal,
+    private modal: NgbModal,
     private changeDetector: ChangeDetectorRef,
     /*config: NgbModalConfig*/
 
-    public router : Router,
-    public toastr : ToastrService
-    )
-    {
-      //config.backdrop = 'static';
-    }
+    public router: Router,
+    public toastr: ToastrService
+  ) {
+    //config.backdrop = 'static';
+  }
   ngOnInit(): void {
     this.formRegistro = this.services.cargarFormClientes();
     this.getListClientes();
@@ -43,15 +66,39 @@ export class GestionClientesComponent {
      * Método de formulario de registro
      *
      */
-  registrar(){
-    this.services.registrarClientes(this.formRegistro).subscribe(
-      (result:any)=>{
-        console.log('============>', result);
-      },
-      (error)=>{
-        console.log('=======error=====>', error);
+  registrar() {
+    if (this.formRegistro.pristine) {
+      console.log('Sin cambios');
+      Swal.fire({ icon: 'info', title: 'No ha hecho ajustes', text: '!' });
+    } else {
+      if (this.actualizarR) {
+        this.services.actualizaCliente(this.formRegistro).subscribe(
+          (result: any) => {
+            console.log('============>', result);
+            this.getListClientes();
+            this.formRegistro.reset();
+            Swal.fire({ icon: 'info', title: 'Actualizado correctamente', text: 'ok' });
+          },
+          (error) => {
+            console.log('=======error=====>', error);
+          }
+        );
       }
-    );
+
+      if (!this.actualizarR) {
+        this.services.registrarClientes(this.formRegistro).subscribe(
+          (result: any) => {
+            console.log('============>', result);
+            this.getListClientes();
+            this.formRegistro.reset();
+            Swal.fire({ icon: 'info', title: 'Registrado correctamente', text: 'ok' });
+          },
+          (error) => {
+            console.log('=======error=====>', error);
+          }
+        );
+      }
+    }
   }
 
   /**
@@ -59,7 +106,7 @@ export class GestionClientesComponent {
    *
    */
 
-  getListClientes(){
+  getListClientes() {
     this.services.getClientes().subscribe(
       (result: any) => {
         //this.viewDateTableEspanol();
@@ -72,6 +119,12 @@ export class GestionClientesComponent {
     );
 
   }
+
+  actualizarR: boolean = false;
+  update(confirma: boolean) {
+    this.actualizarR = !confirma ? false : true;
+  }
+
 
   /**
    *
@@ -93,7 +146,7 @@ export class GestionClientesComponent {
 
   /**Método para botón de regresar */
 
-  regresar(){
+  regresar() {
 
     this.router.navigate(['/', 'gestion-principal'])
   }
@@ -109,7 +162,12 @@ export class GestionClientesComponent {
 
   /**Método para botón editar */
 
-  editar2(form: any , modal: any){
+  editar2(form: any, modal: any) {
+    this.campoIdentificacion = true;
+    console.log('--->> ',this.formRegistro.get('id').value);
+    console.log('===BBB>>   ',this.formRegistro.get('id').setValue(''));
+    this.formRegistro.get('id').setValue('');
+    console.log('--->> ',this.formRegistro.get('id').value);
     console.log(form);
     for (let obj in form) {
 
@@ -121,19 +179,60 @@ export class GestionClientesComponent {
 
       }
     }
-    this.modal.open(modal, { size: 'xl', scrollable: true, backdrop: 'static', keyboard:false });
+    this.modal.open(modal, { size: 'xl', scrollable: true, backdrop: 'static', keyboard: false });
   }
 
-  limpiar(){
+  limpiar() {
     this.formRegistro.reset();
   }
 
-  crear(tipo:string ){
-  
+  crear(tipo: string) {
+
+  }
+
+  eliminar(id: any) {
+    Swal.fire({
+      title: `Documento #: ${id.id}`,
+      text: '¿Eliminar?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar',
+    }).then((resultado) => {
+      if (resultado.value) {
+        this.spinner.show();
+        this.services.deleteCliente(id.id).subscribe(
+          (result: any) => {
+            //this.viewDateTableEspanol();
+
+            this.getListClientes();            
+            Swal.fire({icon: 'info', title: 'Eliminado correctamente',  text: 'ok'});             
+            this.spinner.hide();            
+          },
+          (error) => {
+            this.spinner.hide();
+          }
+        );
+      } else {
+        this.spinner.hide();
+      }
+    });
+
   }
 
 
-
+  validateFormat(event: any) {
+    let key;
+    key = event.keyCode;
+    key = String.fromCharCode(key);
+    const regex = /[0-9]|\./;
+    if (!regex.test(key)) {
+      event.returnValue = false;
+      if (event.preventDefault) {
+        event.preventDefault();
+      }
+    }
+  }
 
 
 

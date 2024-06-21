@@ -72,6 +72,16 @@ matTooltip="Principal"
         >
           <mat-icon>edit</mat-icon>
         </button>
+        <button
+        type="button"
+        data-toggle="modal"
+        class="btn btn-secondary btn-round btn-fab btn-sm"
+        matTooltip="Borrar"
+        [matTooltipPosition]="'below'"
+        (click)="eliminar(element)"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
       </td>
     </ng-container>
 
@@ -107,8 +117,9 @@ matTooltip="Principal"
             matInput
             #id
             required="true"
-            readonly="false"
+            readonly="{{campoIdentificacion}}"
             formControlName="id"
+            (keypress)="validateFormat($event)"
           />
         </mat-form-field>
 
@@ -120,25 +131,17 @@ matTooltip="Principal"
       </div>
 
       <div class="col">
-        <mat-form-field hintLabel="Max 10 caracteres">
+        <mat-form-field>
           <mat-label>Tipo Identificaci&oacute;n</mat-label>
-          <input
-            matInput
-            #tipoIdentificacion
-            required="true"
-            formControlName="tipoIdentificacion"
-          />
-        </mat-form-field>
-
-        <div *ngIf="formRegistro.controls['tipoIdentificacion'].errors">
-          <mat-error
-            *ngIf="formRegistro.controls['tipoIdentificacion'].errors?.required"
-          >
-            <p style="color: F44336">Debe ingresar datos.</p>
+          <mat-select formControlName="tipoIdentificacion" placeholder="tipoIdentificacion">
+            <mat-option style="z-index: 99999" *ngFor="let tip of listTipoIdentificacion" [value]="tip.nombre">{{ tip.nombre }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="formRegistro.controls['tipoIdentificacion'].errors?.required">
+            <span> Se debe seleccionar una opci&oacute;n</span>
           </mat-error>
-        </div>
+        </mat-form-field>
       </div>
-
       <div class="col">
         <mat-form-field hintLabel="Max 50 caracteres">
           <mat-label>Nombres</mat-label>
@@ -248,6 +251,7 @@ matTooltip="Principal"
       [disabled]="formRegistro.invalid"
       class="btn btn-secondary btn-sm"
       type="submit"
+      (click)="update(true)"
       [attr.form]="idForm"
     >
       Actualizar

@@ -204,6 +204,7 @@ export class ServiciosService {
     }
 
   registroClientes:any[] = [];
+  actualizarClientes:any [] =[];
   /**
    * Metodo para registrar vendedores en oracle
    * @param form
@@ -251,7 +252,7 @@ export class ServiciosService {
      let url = `${environment.urlActualizarClientes}${form.value.id}`;
      console.log('URL: ',url);
      return this.http.put(url, items).pipe(
-           tap((result: any) => (this.registroClientes = result)),
+           tap((result: any) => (this.actualizarClientes = result)),
            map((result: any) => result)
          );
    }

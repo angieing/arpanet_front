@@ -78,6 +78,7 @@ export class GestionVentasComponent implements OnInit{
             (resultup:any)=>{
               console.log('============>', resultup);
               this.getListVentas(); 
+              this.formRegistro.reset();
               Swal.fire({icon: 'info', title: 'Actualizado correctamente',  text: 'ok'});             
             },
             (errorup)=>{
@@ -91,6 +92,7 @@ export class GestionVentasComponent implements OnInit{
             (result:any)=>{
               console.log('=====registar=======>', result);
               this.getListVentas(); 
+              this.formRegistro.reset();
               Swal.fire({icon: 'info', title: 'Registrado correctamente',  text: 'ok'});                          
             },
             (error)=>{
