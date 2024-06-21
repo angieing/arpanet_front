@@ -70,6 +70,8 @@ matTooltip="Principal"
       </td>
     </tr>
   </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Seleccione pagina of ventas">
+  </mat-paginator>
 </div>
 
 <br>
@@ -89,7 +91,7 @@ matTooltip="Principal"
           <input
             matInput
             #id
-            required="true"
+            required="false"
             readonly="true"
             formControlName="id"
           />
@@ -125,7 +127,7 @@ matTooltip="Principal"
       <div class="col">
         <mat-form-field hintLabel="Max 50 caracteres">
           <mat-label>% Impuesto</mat-label>
-          <input matInput #nombres required="false" formControlName="porcentaje_impuesto" />
+          <input matInput #nombres required="false" formControlName="porcentaje_impuesto" (keypress)="validateFormat($event)"/>
         </mat-form-field>
 
         <div *ngIf="formRegistro.controls['porcentaje_impuesto'].errors">
@@ -135,92 +137,7 @@ matTooltip="Principal"
         </div>
       </div>
 
-      <!--
-      <div class="col">
-        <mat-form-field hintLabel="Max 10 caracteres">
-          <mat-label>Apellidos</mat-label>
-          <input
-            matInput
-            #apellidos
-            required="true"
-            formControlName="apellidos"
-          />
-        </mat-form-field>
 
-        <div *ngIf="formRegistro.controls['apellidos'].errors">
-          <mat-error
-            *ngIf="formRegistro.controls['apellidos'].errors?.required"
-          >
-            <p style="color: F44336">Debe ingresar datos.</p>
-          </mat-error>
-        </div>
-      </div>
-      -->
-
-      <!--
-      <div class="col">
-        <mat-form-field hintLabel="Max 103 caracteres">
-          <mat-label>Direcci&oacute;n</mat-label>
-          <input
-            matInput
-            #direccion
-            required="true"
-            formControlName="direccion"
-          />
-        </mat-form-field>
-
-        <div *ngIf="formRegistro.controls['direccion'].errors">
-          <mat-error
-            *ngIf="formRegistro.controls['direccion'].errors?.required"
-          >
-            <p style="color: F44336">Debe ingresar datos.</p>
-          </mat-error>
-        </div>
-      </div>
-      -->
-
-      <!--
-      <div class="col">
-        <mat-form-field class="example-full-width">
-          <mat-label>Tel&eacute;fono</mat-label>
-          <input
-            type="text"
-            matInput
-            formControlName="telefono"
-            placeholder="Teléfono"
-            required="true"
-          />
-        </mat-form-field>
-        <div *ngIf="formRegistro.controls['telefono'].errors">
-          <mat-error *ngIf="formRegistro.controls['telefono'].errors?.required">
-            <p style="color: F44336">Debe ingresar datos.</p>
-          </mat-error>
-        </div>
-      </div>
-      -->
-
-      <!--
-      <div class="col">
-        <mat-form-field class="example-full-width">
-          <mat-label>Correo Electrónico</mat-label>
-          <input
-            type="email"
-            matInput
-            formControlName="correo"
-            placeholder="xxxx@example.com"
-            required="true"
-          />
-
-          <mat-error> Ingrese un email valido! </mat-error>
-          <mat-error> Email es <strong>requerido</strong> </mat-error>
-        </mat-form-field>
-        <div *ngIf="formRegistro.controls['correo'].errors">
-          <mat-error *ngIf="formRegistro.controls['correo'].errors?.required">
-            <p style="color: F44336">Debe ingresar datos.</p>
-          </mat-error>
-        </div>
-      </div>
-      -->
 
     </div>
   </form>

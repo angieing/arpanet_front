@@ -218,7 +218,7 @@ export class GestionVentasComponent implements OnInit{
 
     let enviarIdVendedor = this.formRegistro.value;
     enviarIdVendedor.id = form.id;
-    this.modal.open(modal, { size: 'xl', scrollable: true, backdrop: 'static', keyboard:false });
+    //this.modal.open(modal, { size: 'xl', scrollable: true, backdrop: 'static', keyboard:false });
   }
 
   limpiar(){
@@ -273,32 +273,7 @@ export class GestionVentasComponent implements OnInit{
   } 
 
      // validar campos numeros
-     validateFormat(event:any) {
-      /* if(campo == environment.lbl_campo_nu_nit_prov || campo == environment.lbl_campo_nu_nit_clie || campo == environment.lbl_campo_pc_rete_iva || campo == environment.lbl_campo_nu_cta_banc
-         || campo == environment.lbl_campo_ct_plaz_pago
-         ){
-         let key;
-         const regexPaste = /[^0-9]+/g;
-         if(campo == environment.lbl_campo_nu_nit_prov || campo == environment.lbl_campo_nu_nit_clie || campo == environment.lbl_campo_pc_rete_iva || campo == environment.lbl_campo_nu_cta_banc
-           || campo == environment.lbl_campo_ct_plaz_pago
-           ){
-         if (event.type === 'paste') {
-             key = event.clipboardData.getData('text/plain');
-             key = key.replaceAll(regexPaste, "");
-             key = this.formularioLlenarParametros.get(campo).setValue(key);
-         } else {
-             key = event.keyCode;
-             key = String.fromCharCode(key);
-         }
-         const regex = /[0-9]|\./;
-         if (! regex.test(key)) {
-             event.returnValue = false;
-             if (event.preventDefault) {
-                 event.preventDefault();
-             }
-         }
-        }
-       }*/
+     validateFormat(event:any) {   
         let key;
         key = event.keyCode;
         key = String.fromCharCode(key);

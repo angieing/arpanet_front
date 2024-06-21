@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -7,6 +7,8 @@ import { ToastrService } from 'ngx-toastr';
 import { TiposIdentificacion } from 'src/app/modelos/Entidades';
 import { ServiciosService } from 'src/app/services/servicios.service';
 import Swal from 'sweetalert2';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-gestion-clientes',
@@ -41,6 +43,8 @@ export class GestionClientesComponent {
     },
   ];
 
+  @ViewChild(MatPaginator, { static: true })
+  paginator!: MatPaginator;
 
   constructor(
     public services: ServiciosService,
@@ -112,6 +116,7 @@ export class GestionClientesComponent {
         //this.viewDateTableEspanol();
         this.listClientes = result;
         this.dataSource = new MatTableDataSource<any>(result);
+        this.dataSource.paginator = this.paginator;
       },
       (error) => {
         console.log(`Lsita eror:  ${error}`);
@@ -179,7 +184,7 @@ export class GestionClientesComponent {
 
       }
     }
-    this.modal.open(modal, { size: 'xl', scrollable: true, backdrop: 'static', keyboard: false });
+    //this.modal.open(modal, { size: 'xl', scrollable: true, backdrop: 'static', keyboard: false });
   }
 
   limpiar() {

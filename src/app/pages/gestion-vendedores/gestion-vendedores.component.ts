@@ -118,7 +118,7 @@ export class GestionVendedoresComponent implements OnInit {
             Swal.fire({icon: 'info', title: 'Registrado correctamente',  text: 'ok'});             
           },
           (error) => {
-            console.log('=======error=====>', error);
+            Swal.fire({icon: 'warning', title: 'Error',  text: '!'});  
           }
         );
       }
@@ -206,12 +206,12 @@ export class GestionVendedoresComponent implements OnInit {
     let enviarIdRegistro = this.formRegistro.value;
     enviarIdRegistro.id = form.id;
 
-    this.modal.open(modal, {
+    /*this.modal.open(modal, {
       size: 'xl',
       scrollable: true,
       backdrop: 'static',
       keyboard: false,
-    });
+    });*/
   }
 
   limpiar() {
