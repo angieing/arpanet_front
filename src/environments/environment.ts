@@ -44,6 +44,7 @@ export const environment = {
   urlListarVendedorMasVendido: 'https://xhnsfd78-9091.use.devtunnels.ms/ventas/ver-mas-vendido',
   urlListarPorAnioEspecifico: 'https://xhnsfd78-9091.use.devtunnels.ms/ventas/anio-especifico/',
   urlListPromedioVentasCliente: 'https://xhnsfd78-9091.use.devtunnels.ms/ventas/promedio-ventas-cliente',
+  urlListCantidadVentasAnioMes: 'https://xhnsfd78-9091.use.devtunnels.ms/ventas/anio-mes',
   //etiquetas formularios
   usuario: 'Usuario',
   lbl_pass: 'Ingrese su contraseña',

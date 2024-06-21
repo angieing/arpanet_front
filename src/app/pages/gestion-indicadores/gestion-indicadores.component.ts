@@ -91,6 +91,16 @@ export class GestionIndicadoresComponent implements OnInit{
     );
   }
 
+  listCantidadVentasAnioMesEspecifico:any[] = [];
+  listarCantidadVentasAnioMesEspecifico(){
+    this.services.getlistarCantidadVentasAnioMesEspecifico().subscribe(
+      (result:any)=>{
+        this.listCantidadVentasAnioMesEspecifico = result;
+      },
+      (error)=>{}
+    );
+  }
+
   regresar(){
 
   }

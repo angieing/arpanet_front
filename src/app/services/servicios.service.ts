@@ -396,4 +396,18 @@ export class ServiciosService {
     );
   }
 
+
+  listarIndicadores5:any[] = [];
+    /**
+    * Cuanto se ha vendido en un año y mes específico
+    * @returns
+    */
+  getlistarCantidadVentasAnioMesEspecifico(): Observable<any[]> {
+   let url = `${environment.urlListCantidadVentasAnioMes}`;
+   return this.http.get(url).pipe(
+     tap((result: any) => (this.listarIndicadores4 = result)),
+     map((result: any) => result)
+   );
+ }
+
 }

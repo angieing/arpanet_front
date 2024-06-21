@@ -48,14 +48,11 @@
                                 <td>{{ p.tipo_clientes }}</td>
                                 <td>{{ p.cliente }}</td>
                                 <td>{{ p.impuestos }}</td>
-                                <td>{{ p.subtotal }}</td>   
-                                <td>{{ p.total }}</td>   
+                                <td>$ {{ p.subtotal }}</td>   
+                                <td>$ {{ p.total }}</td>   
                                 <td>{{ p.fecha }}</td>     
                                 <td>{{ p.tipo_vendedor }}</td>                                                                                                                    
-                                <td>{{ p.vendedor }}</td>
-                                
-                                
-
+                                <td>{{ p.vendedor }}</td>                                                                
                             </tr>
                         </tbody>
                     </table>
@@ -93,7 +90,7 @@
                             <tr *ngFor="let p of listVendedorMasVende ; let i = index">
                                 <td>{{ p.id }}</td>
                                 <td>{{ p.nombres}}   {{ p.apellidos}}</td>
-                                <td>{{ p.totalVentas }}</td>                                                                                               
+                                <td>$ {{ p.totalVentas }}</td>                                                                                               
 
                             </tr>
                         </tbody>
@@ -134,7 +131,7 @@
                                 <td>{{ p.anio }}</td>
                                 <td>{{ p.subtotal}} </td>
                                 <td>{{ p.impuestos }}</td> 
-                                <td>{{ p.total }}</td>                                                                                                  
+                                <td>$ {{ p.total }}</td>                                                                                                  
 
                             </tr>
                         </tbody>
@@ -175,6 +172,43 @@
                                 <td>{{ pro.cliente }}</td>
                                 <td>{{ pro.nombres}} </td>
                                 <td>{{ pro.total }}</td>                                                                                                                           
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title> Datos Consulta </mat-panel-title>
+                    <mat-panel-description>
+                        Cuanto se ha vendido en un año y mes específico
+                        <mat-icon>map</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+              
+                <button type="button" data-toggle="modal" class="btn btn-secondary btn-round btn-fab btn-sm" matTooltip="Consultar"
+                [matTooltipPosition]="'below'" (click)="listarCantidadVentasAnioMesEspecifico()">
+                <mat-icon>timeline</mat-icon>
+                </button>
+                  
+
+                <div class="">
+                    <table id="tabla" class="table table-bordered table-hover">
+                        <caption></caption>
+
+                        <thead>
+                            <tr>                                
+                                <th>A&nacute;o</th>
+                                <th>Mes</th> 
+                                <th>Total</th>                                                                                                  
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let can of listCantidadVentasAnioMesEspecifico ; let i = index">
+                                <td>{{ can.anio }}</td>
+                                <td>{{ can.mes}} </td>
+                                <td>$ {{ can.total }}</td>                                                                                                                         
                             </tr>
                         </tbody>
                     </table>
