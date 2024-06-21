@@ -190,8 +190,9 @@ export class GestionVendedoresComponent implements OnInit {
     this.modal.dismissAll(modal);
   }
 
-  editar2(form: any, modal: any) {
-    console.log(form);
+  noEditar:boolean = false;
+  editar2(form: any, modal: any) {  
+    this.noEditar = true;  
     for (let obj in form) {
       for (let f in this.formRegistro.value) {
         console.log(obj);
@@ -216,6 +217,7 @@ export class GestionVendedoresComponent implements OnInit {
 
   limpiar() {
     this.formRegistro.reset();
+    this.noEditar = false;
   }
 
   crear(tipo: string) {

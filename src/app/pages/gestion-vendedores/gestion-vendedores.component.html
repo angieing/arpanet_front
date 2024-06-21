@@ -142,11 +142,11 @@
       <div class="col">
         <mat-form-field hintLabel="Max 10 caracteres">
           <mat-label>N&uacute;mero identificaci&oacute;n</mat-label>
-          <input
+          <input 
             matInput
             #id
             required="true"
-            readonly="false"
+            readonly="{{noEditar}}"
             formControlName="id"
             (keypress)="validateFormat($event)"
           />

@@ -166,29 +166,22 @@ export class GestionClientesComponent {
   }
 
   /**Método para botón editar */
-
+  noEditar:boolean = false;
   editar2(form: any, modal: any) {
-    this.campoIdentificacion = true;
-    console.log('--->> ',this.formRegistro.get('id').value);
-    console.log('===BBB>>   ',this.formRegistro.get('id').setValue(''));
-    this.formRegistro.get('id').setValue('');
-    console.log('--->> ',this.formRegistro.get('id').value);
-    console.log(form);
+    this.noEditar = true;          
     for (let obj in form) {
-
-      for (let f in this.formRegistro.value) {
-        console.log(obj);
+      for (let f in this.formRegistro.value) {        
         if (f == obj) {
           this.formRegistro.get(obj).setValue(form[obj]);
         }
-
       }
     }
     //this.modal.open(modal, { size: 'xl', scrollable: true, backdrop: 'static', keyboard: false });
   }
 
-  limpiar() {
+  limpiar() {   
     this.formRegistro.reset();
+    this.noEditar = false;
   }
 
   crear(tipo: string) {
