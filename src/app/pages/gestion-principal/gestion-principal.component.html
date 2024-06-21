@@ -1,26 +1,29 @@
+<div class="test">
+    <button class="btn btn-secondary btn-round btn-fab btn-sm" matTooltip="SALIR" [matTooltipPosition]="'below'"
+        (click)="regresar()"><mat-icon>keyboard_return</mat-icon></button>
+    <br>
+
+    <button mat-button [matMenuTriggerFor]="aboveMenu">Administrar Ventas</button>
+    <mat-menu #aboveMenu="matMenu" yPosition="above">
+        <button mat-menu-item (click)="gestionarVentas('v')">Gestión Ventas</button>
+        <button mat-menu-item (click)="gestionarIndicadores()">Gestión Indicadores</button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="belowMenu">Administrar Productos</button>
+    <mat-menu #belowMenu="matMenu" yPosition="below">
+        <button mat-menu-item (click)="gestionarVentas('p')">Gestión Productos</button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="beforeMenu">Administrar Clientes</button>
+    <mat-menu #beforeMenu="matMenu" xPosition="before">
+        <button mat-menu-item (click)="gestionarVentas('c')">Gestión Clientes</button>
+    </mat-menu>
 
 
+    <button mat-button [matMenuTriggerFor]="afterMenu">Administrar Vendedores</button>
+    <mat-menu #afterMenu="matMenu" xPosition="after">
+        <button mat-menu-item (click)="gestionarVentas('ve')">Gestión Vendedores</button>
+    </mat-menu>
 
 
-
-<button mat-button [matMenuTriggerFor]="aboveMenu">Administrar Ventas</button>
-<mat-menu #aboveMenu="matMenu" yPosition="above">
-    <button mat-menu-item (click)="gestionarVentas('v')">Gestión Ventas</button> 
-    <button mat-menu-item (click)="gestionarIndicadores()">Gestión Indicadores</button>    
-</mat-menu>
-
-<button mat-button [matMenuTriggerFor]="belowMenu">Administrar Productos</button>
-<mat-menu #belowMenu="matMenu" yPosition="below">   
-    <button mat-menu-item (click)="gestionarVentas('p')">Gestión Productos</button>
-</mat-menu>
-
-<button mat-button [matMenuTriggerFor]="beforeMenu">Administrar Clientes</button>
-<mat-menu #beforeMenu="matMenu" xPosition="before">
-    <button mat-menu-item (click)="gestionarVentas('c')">Gestión Clientes</button>
-</mat-menu>
-
-
-<button mat-button [matMenuTriggerFor]="afterMenu">Administrar Vendedores</button>
-<mat-menu #afterMenu="matMenu" xPosition="after">
-  <button mat-menu-item (click)="gestionarVentas('ve')">Gestión Vendedores</button>
-</mat-menu>
+</div>

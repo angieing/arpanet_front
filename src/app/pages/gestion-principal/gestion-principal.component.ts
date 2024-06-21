@@ -70,4 +70,9 @@ export class GestionPrincipalComponent implements OnInit{
     this.router.navigate(['/','gestion-indicadores']);
   }
 
+  
+  regresar(){
+    this.router.navigate(['/', 'login'])
+  }
+
 }
