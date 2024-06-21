@@ -14,7 +14,10 @@ export const environment = {
   urlRegistrarVendedores: 'http://localhost:9091/vendedores/crear',
   urlListarVendedores: 'http://localhost:9091/vendedores/listar',
   urlRegistrarClientes: 'http://localhost:9091/clientes/crear',
-  urlListarClientes: 'http://localhost:9091/clientes/listar',*/
+  urlListarClientes: 'http://localhost:9091/clientes/listar',
+  urlRegistrarProductos: 'http://localhost:9091/productos/crear',
+  urlListarProductos: 'http://localhost:9091/productos/listar',
+  */
 
   urlLocal: 'https://xhnsfd78-9091.use.devtunnels.ms',
   urlTunelLocal: 'https://xhnsfd78-9091.use.devtunnels.ms',
@@ -28,6 +31,16 @@ export const environment = {
   urlRegistrarClientes: 'https://xhnsfd78-9091.use.devtunnels.ms/clientes/crear',
   urlListarClientes: 'https://xhnsfd78-9091.use.devtunnels.ms/clientes/listar',
   urlDeleteVentas: 'https://xhnsfd78-9091.use.devtunnels.ms/ventas/',
+  urlListarProductos: 'https://xhnsfd78-9091.use.devtunnels.ms/productos/listar',
+  urlRegistrarProductos: 'https://xhnsfd78-9091.use.devtunnels.ms/productos/crear',
+  urlActualizarVentas: 'https://xhnsfd78-9091.use.devtunnels.ms/ventas/',
+  urlDeleteVendedores: 'https://xhnsfd78-9091.use.devtunnels.ms/vendedores/',
+  urlDeleteClientes: 'https://xhnsfd78-9091.use.devtunnels.ms/clientes/',
+  urlDeleteProductos: 'https://xhnsfd78-9091.use.devtunnels.ms/productos/',
+  urlActualizarVendedores: 'https://xhnsfd78-9091.use.devtunnels.ms/vendedores/',
+  urlActualizarClientes: 'https://xhnsfd78-9091.use.devtunnels.ms/clientes/',
+  urlActualizarProductos: 'https://xhnsfd78-9091.use.devtunnels.ms/productos/',
+
 
   //etiquetas formularios
   usuario: 'Usuario',

@@ -16,6 +16,8 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
+import { Dependencia } from 'src/app/modelos/Entidades';
+import {MatDividerModule} from '@angular/material/divider';
 
 @Component({
   selector: 'app-gestion-ventas',
@@ -53,10 +55,12 @@ export class GestionVentasComponent implements OnInit{
     }
 
   ngOnInit():void {
-    this.formRegistro = this.services.cargarFormVentas();
-    this.getListVentas();
     this.getListClientes();
     this.getListVendedores();
+    this.formRegistro = this.services.cargarFormVentas();
+    this.getListVentas();
+    this.filterTable();   
+    
   }
 
   ngAfterViewInit() {
@@ -64,15 +68,33 @@ export class GestionVentasComponent implements OnInit{
   }
 
   registrar(){
+    console.log('=====>',this.formRegistro.value.id);
+      if (this.formRegistro.pristine) {
+        console.log('sin cambios');
+        this.toastr.info('No ha cambiado nada');
+      } else {
+        if(this.actualizarR){
+          this.services.actualizaVentas(this.formRegistro).subscribe(
+            (resultup:any)=>{
+              console.log('============>', resultup);
+            },
+            (errorup)=>{
+              console.log('=======error=====>', errorup);
+            }
+          );
+        }
 
-    this.services.registrarVentas(this.formRegistro).subscribe(
-      (result:any)=>{
-        console.log('============>', result);
-      },
-      (error)=>{
-        console.log('=======error=====>', error);
-      }
-    );
+        if(!this.actualizarR){
+          this.services.registrarVentas(this.formRegistro).subscribe(
+            (result:any)=>{
+              console.log('============>', result);
+            },
+            (error)=>{
+              console.log('=======error=====>', error);
+            }
+          );
+        }
+    }
 
   }
 
@@ -131,8 +153,7 @@ export class GestionVentasComponent implements OnInit{
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-      //this.dataSource.filterPredicate = this.obtenerFuncionDeBusqueda();
+      this.dataSource.paginator.firstPage();      
     }
     this.filtro = filterValue
   }
@@ -175,10 +196,22 @@ export class GestionVentasComponent implements OnInit{
         console.log(obj);
         if (f == obj) {
           this.formRegistro.get(obj).setValue(form[obj]);
+          if (f == 'cliente') {
+            this.formRegistro.get(obj).setValue((form[obj] = +form[obj]));
+          }
+
+          if (f == 'vendedor') {
+            this.formRegistro.get(obj).setValue((form[obj] = +form[obj]));
+          }
         }
 
       }
     }
+    let enviarIdRegistro = this.formRegistro.value;
+    enviarIdRegistro.id = form.id;
+
+    let enviarIdVendedor = this.formRegistro.value;
+    enviarIdVendedor.id = form.id;
     this.modal.open(modal, { size: 'xl', scrollable: true, backdrop: 'static', keyboard:false });
   }
 
@@ -188,6 +221,11 @@ export class GestionVentasComponent implements OnInit{
 
   crear(tipo:string ){
     alert(tipo);
+  }
+
+  actualizarR: boolean = false;
+  update(confirma: boolean) {
+    this.actualizarR = !confirma ? false : true;
   }
 
   eliminar(id:any){  
@@ -225,17 +263,11 @@ export class GestionVentasComponent implements OnInit{
 
     this.router.navigate(['/','gestion-ventas']);
   }
-}
 
 
-export interface Dependencia {
-  id: any;
-  fecha: any;
-  subtotal: any;
-  impuestos: any;
-  total: any;
-  cliente: any;
-  vendedor: any;
-  tipo_vendedor: any;
-  tipo_clientes:any;
+  filterTable() {
+    this.dataSource.filterPredicate = function(data, filter: string): boolean {
+      return data.id.toLowerCase().includes(filter) || data.fecha.toLowerCase().includes(filter);
+    };
+  } 
 }

@@ -23,6 +23,7 @@ export class ServiciosService {
     private formularioNuevo: FormBuilder,
     private formularioVendedores: FormBuilder,
     private formularioClientes: FormBuilder,
+    private formularioProductos: FormBuilder,
     private formularioTurnos: FormBuilder,
     private http: HttpClient,
     private router: Router
@@ -77,6 +78,16 @@ export class ServiciosService {
       correo:['', Validators.compose([Validators.required, Validators.email])]
     });
   }
+
+  //form productos
+  cargarFormProductos(): FormGroup{
+    return this.formularioProductos.group({
+      id: [],
+      nombre:[],
+      porcentaje_impuesto:[]
+    });
+  }
+
 
   //servicios
   /**
@@ -211,9 +222,83 @@ export class ServiciosService {
          );
    }
 
-   
-  deleteVenta(id: any) {    
-    let url = `${environment.urlDeleteVentas}${id}`;    
+
+   actualizaVentas(form: any) {
+    console.log('MOSTRAR: ',form.value);
+     let items = Object.assign(form.value);
+     let url = `${environment.urlActualizarVentas}${form.value.id}`;
+     console.log('URL: ',url);
+     return this.http.put(url, items).pipe(
+           tap((result: any) => (this.registroVentas = result)),
+           map((result: any) => result)
+         );
+   }
+
+   actualizaVendedor(form: any) {
+    console.log('MOSTRAR: ',form.value);
+     let items = Object.assign(form.value);
+     let url = `${environment.urlActualizarVendedores}${form.value.id}`;
+     console.log('URL: ',url);
+     return this.http.put(url, items).pipe(
+           tap((result: any) => (this.registroVendedores = result)),
+           map((result: any) => result)
+         );
+   }
+
+   actualizaCliente(form: any) {
+    console.log('MOSTRAR: ',form.value);
+     let items = Object.assign(form.value);
+     let url = `${environment.urlActualizarClientes}${form.value.id}`;
+     console.log('URL: ',url);
+     return this.http.put(url, items).pipe(
+           tap((result: any) => (this.registroClientes = result)),
+           map((result: any) => result)
+         );
+   }
+
+   actualizaProducto(form: any) {
+    console.log('MOSTRAR: ',form.value);
+     let items = Object.assign(form.value);
+     let url = `${environment.urlActualizarProductos}${form.value.id}`;
+     console.log('URL: ',url);
+     return this.http.put(url, items).pipe(
+           tap((result: any) => (this.registroProductos = result)),
+           map((result: any) => result)
+         );
+   }
+
+  deleteVenta(id: any) {
+    let url = `${environment.urlDeleteVentas}${id}`;
+    return this.http
+      .request('delete', url)
+      .pipe(
+        tap((result: any) => (this.respuestas = result)),
+        map((result: any) => result)
+      );
+  }
+
+  deleteVendedor(id: any) {
+    let url = `${environment.urlDeleteVendedores}${id}`;
+    return this.http
+      .request('delete', url)
+      .pipe(
+        tap((result: any) => (this.respuestas = result)),
+        map((result: any) => result)
+      );
+  }
+
+  deleteCliente(id: any) {
+    let url = `${environment.urlDeleteClientes}${id}`;
+    return this.http
+      .request('delete', url)
+      .pipe(
+        tap((result: any) => (this.respuestas = result)),
+        map((result: any) => result)
+      );
+  }
+
+  deleteProducto(id: any) {
+    let url = `${environment.urlDeleteProductos}${id}`;
     return this.http
       .request('delete', url)
       .pipe(
@@ -223,5 +308,37 @@ export class ServiciosService {
   }
 
 
+
+  listaProductos:any[] = [];
+     /**
+   * Obtener listado de clientes actuales
+   * @returns
+   */
+     getProductos(): Observable<any[]> {
+      let url = `${environment.urlListarProductos}`;
+      return this.http.get(url).pipe(
+        tap((result: any) => (this.listaProductos = result)),
+        map((result: any) => result)
+      );
+    }
+
+  registroProductos:any[] = [];
+  /**
+   * Metodo para registrar vendedores en oracle
+   * @param form
+   * @param token
+   * @param tipo
+   * @returns
+   */
+  registrarProductos(form: any) {
+    console.log('MOSTRAR: ',form.value);
+     let items = Object.assign(form.value);
+     let url = `${environment.urlRegistrarProductos}`;
+     console.log('URL: ',url);
+     return this.http.post(url, items).pipe(
+           tap((result: any) => (this.registroProductos = result)),
+           map((result: any) => result)
+         );
+   }
 
 }

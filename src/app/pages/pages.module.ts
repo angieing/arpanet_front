@@ -44,6 +44,7 @@ import { GestionClientesComponent } from './gestion-clientes/gestion-clientes.co
 import { GestionProductosComponent } from './gestion-productos/gestion-productos.component';
 import { GestionVendedoresComponent } from './gestion-vendedores/gestion-vendedores.component';
 import { GestionVentasComponent } from './gestion-ventas/gestion-ventas.component';
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({ declarations: [
         TemplateComponent,
         PagesComponent,
@@ -57,6 +58,7 @@ import { GestionVentasComponent } from './gestion-ventas/gestion-ventas.componen
     ],
     exports: [TemplateComponent], imports: [CommonModule,
         //ComponentsModule,
+        MatMenuModule,
         PagesRoutingModule,
         FormsModule,
         ReactiveFormsModule,
@@ -89,6 +91,6 @@ import { GestionVentasComponent } from './gestion-ventas/gestion-ventas.componen
         MatListModule,
         MatDatepickerModule,
         MatTableModule,
-        MatPaginator,
+        MatPaginator,        
         MatToolbarModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class PagesModule {}
