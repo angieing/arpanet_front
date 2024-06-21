@@ -1,17 +1,26 @@
 export const environment = {
   production: true,
-  urlApiProveedorServicio: '/proveedores/ProveedoresServicio/proveedores/v2/',
-  urlToken: '/Token/ProveedoresServicio/token',
-  urlTokenV2: 'http://localhost:8088/ProveedoresServicio/token/validar-token',
-  urlApiGeneralOrganizacion: '/GeneralOrganizacion',
-  urlAutenticacion:'/autenticacion-sigru/general/autenticacion/loginSigru',
+  urlLocal: 'https://xhnsfd78-9091.use.devtunnels.ms',
+  urlTunelLocal: 'https://xhnsfd78-9091.use.devtunnels.ms',
+  urlApi: 'https://xhnsfd78-9091.use.devtunnels.ms/api/tecnica/entrar',
+  urlApiListarComercios: 'https://xhnsfd78-9091.use.devtunnels.ms/api/tecnica/listarcomercios',
+  urlListaVentas:'https://xhnsfd78-9091.use.devtunnels.ms/ventas/listar',
+  urlValidarLogin: 'https://xhnsfd78-9091.use.devtunnels.ms/login/validar-credenciales',
+  urlRegistrarVentas: 'https://xhnsfd78-9091.use.devtunnels.ms/ventas/crear',
+  urlRegistrarVendedores: 'https://xhnsfd78-9091.use.devtunnels.ms/vendedores/crear',
+  urlListarVendedores: 'https://xhnsfd78-9091.use.devtunnels.ms/vendedores/listar',
+  urlRegistrarClientes: 'https://xhnsfd78-9091.use.devtunnels.ms/clientes/crear',
+  urlListarClientes: 'https://xhnsfd78-9091.use.devtunnels.ms/clientes/listar',
 
-  // urlApiProveedorServicio2: '/proveedores/ProveedoresServicio/proveedores/v2/',
-    // urlToken:'/Token/ProveedoresServicio/token/generar',
-    //urlApiGeneralOrganizacion: 'GeneralOrganizacion/GeneralOrganizacion',
-    urlDownloadFiles:'/descargar-archivos-proveedor/visualizador/archivo/descargar/',
 
-    // proveedores:Servicios
-    path: '/ProveedoresServicio',
+  //etiquetas formularios
+  usuario: 'Usuario',
+  lbl_pass: 'Ingrese su contraseña',
+  //msn
 
-};
+
+  //credenciales
+  user: 'admin',
+  pass: 'admin'
+}
+

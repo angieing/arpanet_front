@@ -12,9 +12,10 @@ import { ServiciosService } from 'src/app/services/servicios.service';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-gestion-ventas',
@@ -28,7 +29,9 @@ export class GestionVentasComponent implements OnInit{
   formRegistro: any;
   idForm: string = 'idForm';
   age:any;
-
+  //@ViewChild(MatPaginator) paginator: MatPaginator<any>;
+  @ViewChild(MatPaginator, { static: true })
+  paginator!: MatPaginator;
    // @ViewChild(DataTableDirective, { static: false })
   //dtElements: any = DataTableDirective;
   //isDtInitializeds: boolean = false;
@@ -56,6 +59,10 @@ export class GestionVentasComponent implements OnInit{
     this.getListVendedores();
   }
 
+  ngAfterViewInit() {
+    
+  }
+
   registrar(){
 
     this.services.registrarVentas(this.formRegistro).subscribe(
@@ -78,6 +85,8 @@ export class GestionVentasComponent implements OnInit{
         //this.viewDateTableEspanol();
         this.listVentas = result;
         this.dataSource = new MatTableDataSource<any>(result);
+        this.dataSource.paginator = this.paginator;
+        //this.dataSource.filterPredicate = this.obtenerFuncionDeBusqueda();
       },
       (error) => {
         console.log(`Lsita eror:  ${error}`);
@@ -118,14 +127,34 @@ export class GestionVentasComponent implements OnInit{
 
   filtro: any = ''
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value
-    this.dataSource.filter = filterValue.trim().toLowerCase()
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage()
+      this.dataSource.paginator.firstPage();
+      //this.dataSource.filterPredicate = this.obtenerFuncionDeBusqueda();
     }
     this.filtro = filterValue
   }
+
+  obtenerFuncionDeBusqueda() {
+    let funcionFiltrado = (data: Dependencia, filtro: string): boolean => {
+      if (filtro) {
+        for (let i = 0; i < this.displayedColumns.length; i++) {
+          if (this.displayedColumns[i] == "id") {
+            continue;
+          }
+          const valor: string = data[this.displayedColumns[i] as keyof typeof data].toString().toLowerCase();
+          if (valor.indexOf(filtro) != -1) {
+            return true;
+          }
+        }
+      }
+      return false;
+    };
+    return funcionFiltrado;
+  }
+
   regresar(){
     this.router.navigate(['/', 'gestion-principal'])
   }
@@ -160,4 +189,53 @@ export class GestionVentasComponent implements OnInit{
   crear(tipo:string ){
     alert(tipo);
   }
+
+  eliminar(id:any){  
+    Swal.fire({
+      title: `Documento #: ${id.id}`,
+      text: '¿Eliminar?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar',
+    }).then((resultado) => { 
+          if (resultado.value) {
+          this.spinner.show(); 
+          this.services.deleteVenta(id.id).subscribe(
+          (result: any) => {
+            //this.viewDateTableEspanol();
+            
+            this.getListVendedores();
+            
+            this.toastr.success( 'Registro borrado correctamente' );
+            this.router.navigate(['/','gestion-ventas']);
+            
+            this.spinner.hide();
+            this.dataSource = new MatTableDataSource<any>(this.listVentas);
+          },
+          (error) => {
+            this.spinner.hide();
+          });
+          
+        } else {
+          this.spinner.hide();
+        }
+        
+    });
+
+    this.router.navigate(['/','gestion-ventas']);
+  }
+}
+
+
+export interface Dependencia {
+  id: any;
+  fecha: any;
+  subtotal: any;
+  impuestos: any;
+  total: any;
+  cliente: any;
+  vendedor: any;
+  tipo_vendedor: any;
+  tipo_clientes:any;
 }

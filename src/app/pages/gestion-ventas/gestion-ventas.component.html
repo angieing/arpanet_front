@@ -1,4 +1,4 @@
-<div class="test">
+<div class="mat-elevation-z8">
   <mat-form-field>
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
@@ -59,7 +59,20 @@
         (click)="editar2(element, ModalVentas)"
       >
         <mat-icon>edit</mat-icon>
-      </button> </td>
+      </button>
+      <button
+        type="button"
+        data-toggle="modal"
+        class="btn btn-secondary btn-round btn-fab btn-sm"
+        matTooltip="Borrar"
+        [matTooltipPosition]="'below'"
+        (click)="eliminar(element)"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+     </td>
+     
+      
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -73,6 +86,10 @@
 
 
   </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Seleccione pagina of ventas">
+  </mat-paginator>
   </div>
   <button (click)="regresar()">Regresar</button>
 

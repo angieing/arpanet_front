@@ -17,6 +17,7 @@ export class ServiciosService {
   listaUsuarios: any[] = [];
   login: any[] = [];
   listaPacientes:any[] = [];
+  respuestas:any[] =[];
 
   constructor(
     private formularioNuevo: FormBuilder,
@@ -209,6 +210,17 @@ export class ServiciosService {
            map((result: any) => result)
          );
    }
+
+   
+  deleteVenta(id: any) {    
+    let url = `${environment.urlDeleteVentas}${id}`;    
+    return this.http
+      .request('delete', url)
+      .pipe(
+        tap((result: any) => (this.respuestas = result)),
+        map((result: any) => result)
+      );
+  }
 
 
 
