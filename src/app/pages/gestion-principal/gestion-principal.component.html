@@ -5,7 +5,8 @@
 
 <button mat-button [matMenuTriggerFor]="aboveMenu">Administrar Ventas</button>
 <mat-menu #aboveMenu="matMenu" yPosition="above">
-    <button mat-menu-item (click)="gestionarVentas('v')">Gestión Ventas</button>    
+    <button mat-menu-item (click)="gestionarVentas('v')">Gestión Ventas</button> 
+    <button mat-menu-item (click)="gestionarIndicadores()">Gestión Indicadores</button>    
 </mat-menu>
 
 <button mat-button [matMenuTriggerFor]="belowMenu">Administrar Productos</button>

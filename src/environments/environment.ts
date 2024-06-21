@@ -40,8 +40,10 @@ export const environment = {
   urlActualizarVendedores: 'https://xhnsfd78-9091.use.devtunnels.ms/vendedores/',
   urlActualizarClientes: 'https://xhnsfd78-9091.use.devtunnels.ms/clientes/',
   urlActualizarProductos: 'https://xhnsfd78-9091.use.devtunnels.ms/productos/',
-
-
+  urlListarPorAnio: 'https://xhnsfd78-9091.use.devtunnels.ms/ventas/buscar/',
+  urlListarVendedorMasVendido: 'https://xhnsfd78-9091.use.devtunnels.ms/ventas/ver-mas-vendido',
+  urlListarPorAnioEspecifico: 'https://xhnsfd78-9091.use.devtunnels.ms/ventas/anio-especifico/',
+  urlListPromedioVentasCliente: 'https://xhnsfd78-9091.use.devtunnels.ms/ventas/promedio-ventas-cliente',
   //etiquetas formularios
   usuario: 'Usuario',
   lbl_pass: 'Ingrese su contraseña',

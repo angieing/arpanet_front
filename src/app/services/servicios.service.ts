@@ -341,4 +341,59 @@ export class ServiciosService {
          );
    }
 
+
+   listarIndicadores1:any[] = [];
+     /**
+   * Buscar todas las ventas por un año específico
+   * @returns
+   */
+     getBuscarPorAnio(anio:any): Observable<any[]> {
+      let url = `${environment.urlListarPorAnio}${anio}`;
+      return this.http.get(url).pipe(
+        tap((result: any) => (this.listarIndicadores1 = result)),
+        map((result: any) => result)
+      );
+    }
+
+    listarIndicadores2:any[] = [];
+     /**
+   *  Cual es el vendedor que más ha vendido
+   * @returns
+   */
+     getBuscarVendedorMasVende(): Observable<any[]> {
+      let url = `${environment.urlListarVendedorMasVendido}`;
+      return this.http.get(url).pipe(
+        tap((result: any) => (this.listarIndicadores2 = result)),
+        map((result: any) => result)
+      );
+    }
+
+    listarIndicadores3:any[] = [];
+    /**
+  *   Cuanto se ha vendido en un año específico
+
+  * @returns
+  */
+    getPorAnioEspecifico(anio:any): Observable<any[]> {
+     let url = `${environment.urlListarPorAnioEspecifico}${anio}`;
+     return this.http.get(url).pipe(
+       tap((result: any) => (this.listarIndicadores3 = result)),
+       map((result: any) => result)
+     );
+   }
+
+   listarIndicadores4:any[] = [];
+   /**
+ *    Promedio ventas por cliente
+
+ * @returns
+ */
+   getPromedioVentas(): Observable<any[]> {
+    let url = `${environment.urlListPromedioVentasCliente}`;
+    return this.http.get(url).pipe(
+      tap((result: any) => (this.listarIndicadores4 = result)),
+      map((result: any) => result)
+    );
+  }
+
 }

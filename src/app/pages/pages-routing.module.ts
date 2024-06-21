@@ -8,6 +8,7 @@ import { GestionVentasComponent } from './gestion-ventas/gestion-ventas.componen
 import { GestionVendedoresComponent } from './gestion-vendedores/gestion-vendedores.component';
 import { GestionClientesComponent } from './gestion-clientes/gestion-clientes.component';
 import { GestionProductosComponent } from './gestion-productos/gestion-productos.component';
+import { GestionIndicadoresComponent } from './gestion-indicadores/gestion-indicadores.component';
 
 const routes: Routes = [
   {
@@ -53,7 +54,11 @@ const routes: Routes = [
         data: { showRootComponents: true}
       },
 
-
+      {
+        path: 'gestion-indicadores',
+        component: GestionIndicadoresComponent,
+        data: { showRootComponents: true}
+      },
 
 
 

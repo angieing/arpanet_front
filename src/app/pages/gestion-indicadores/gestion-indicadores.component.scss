@@ -1,0 +1,85 @@
+.example-container .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }
+  
+  
+  .example-action-buttons {
+    padding-bottom: 20px;
+  }
+  
+  .example-headers-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .example-headers-align .mat-mdc-form-field + .mat-mdc-form-field {
+    margin-left: 8px;
+  }
+  
+  .dataTables_wrapper .dataTables_length select {
+    padding: 50px !important;
+    background-color: red  !important;
+  }
+  
+  .dataTables_length select  {
+    width: 50px !important;
+    padding: 50px !important;
+    background-color: white !important;
+  }
+  
+  .expansion-panel-header {
+    background-color: rgb(46, 121, 131) !important;
+    color: white !important;
+  }
+  
+  .expansion-panel-header:hover {
+    background: rgb(10, 102, 145) !important;
+    color:rgb(34, 122, 34)
+    //color: white!;
+  }
+  
+  
+  .mat-tab-labels, .mat-tab-label, .mat-tab-link {
+    color: white;
+    font-size: 16px;
+    background-color: #804A71;
+  }
+  
+  .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+    background: rgb(255, 255, 255);
+    height: 5px;
+  }
+  
+  
+  .mat-mdc-tab-group, .mat-mdc-tab-nav-bar{
+    --mat-tab-header-active-focus-label-text-color: #151414;
+    --mat-tab-header-active-label-text-color : #151414;
+    --mat-tab-header-inactive-label-text-color: rgb(0 0 0 / 60%);
+    --mat-tab-header-inactive-focus-label-text-color: rgb(236 131 218 / 60%);
+    --mat-tab-header-inactive-hover-label-text-color : rgb(236 131 218 / 60%);
+    --mdc-tab-indicator-active-indicator-color: #242022;
+    --mat-tab-header-active-hover-label-text-color: #5052c3;
+    --mat-tab-header-active-ripple-color: #c2185b;
+    --mat-tab-header-inactive-ripple-color: #232222;
+  }
+  
+  .mat-mdc-tab-group.mat-background-primary, .mat-mdc-tab-nav-bar.mat-background-primary {
+    --mat-tab-header-with-background-background-color: #408db9;
+    --mat-tab-header-with-background-foreground-color: white;
+  }
+  
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin-top: 4px;
+  
+      columns: 2;
+      -webkit-columns: 2;
+      -moz-columns: 2;
+  
+  }
+  
