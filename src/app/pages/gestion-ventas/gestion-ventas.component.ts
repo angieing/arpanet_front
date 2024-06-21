@@ -77,6 +77,8 @@ export class GestionVentasComponent implements OnInit{
           this.services.actualizaVentas(this.formRegistro).subscribe(
             (resultup:any)=>{
               console.log('============>', resultup);
+              this.getListVentas(); 
+              Swal.fire({icon: 'info', title: 'Actualizado correctamente',  text: 'ok'});             
             },
             (errorup)=>{
               console.log('=======error=====>', errorup);
@@ -87,7 +89,9 @@ export class GestionVentasComponent implements OnInit{
         if(!this.actualizarR){
           this.services.registrarVentas(this.formRegistro).subscribe(
             (result:any)=>{
-              console.log('============>', result);
+              console.log('=====registar=======>', result);
+              this.getListVentas(); 
+              Swal.fire({icon: 'info', title: 'Registrado correctamente',  text: 'ok'});                          
             },
             (error)=>{
               console.log('=======error=====>', error);
@@ -241,15 +245,11 @@ export class GestionVentasComponent implements OnInit{
           this.spinner.show(); 
           this.services.deleteVenta(id.id).subscribe(
           (result: any) => {
-            //this.viewDateTableEspanol();
-            
-            this.getListVendedores();
-            
-            this.toastr.success( 'Registro borrado correctamente' );
-            this.router.navigate(['/','gestion-ventas']);
-            
+            //this.viewDateTableEspanol();                  
+            this.getListVentas();
+            Swal.fire({icon: 'info', title: 'Eliminado correctamente',  text: 'ok'});                                                              
             this.spinner.hide();
-            this.dataSource = new MatTableDataSource<any>(this.listVentas);
+            //this.dataSource = new MatTableDataSource<any>(this.listVentas);
           },
           (error) => {
             this.spinner.hide();
@@ -260,8 +260,7 @@ export class GestionVentasComponent implements OnInit{
         }
         
     });
-
-    this.router.navigate(['/','gestion-ventas']);
+    
   }
 
 
@@ -270,4 +269,45 @@ export class GestionVentasComponent implements OnInit{
       return data.id.toLowerCase().includes(filter) || data.fecha.toLowerCase().includes(filter);
     };
   } 
+
+     // validar campos numeros
+     validateFormat(event:any) {
+      /* if(campo == environment.lbl_campo_nu_nit_prov || campo == environment.lbl_campo_nu_nit_clie || campo == environment.lbl_campo_pc_rete_iva || campo == environment.lbl_campo_nu_cta_banc
+         || campo == environment.lbl_campo_ct_plaz_pago
+         ){
+         let key;
+         const regexPaste = /[^0-9]+/g;
+         if(campo == environment.lbl_campo_nu_nit_prov || campo == environment.lbl_campo_nu_nit_clie || campo == environment.lbl_campo_pc_rete_iva || campo == environment.lbl_campo_nu_cta_banc
+           || campo == environment.lbl_campo_ct_plaz_pago
+           ){
+         if (event.type === 'paste') {
+             key = event.clipboardData.getData('text/plain');
+             key = key.replaceAll(regexPaste, "");
+             key = this.formularioLlenarParametros.get(campo).setValue(key);
+         } else {
+             key = event.keyCode;
+             key = String.fromCharCode(key);
+         }
+         const regex = /[0-9]|\./;
+         if (! regex.test(key)) {
+             event.returnValue = false;
+             if (event.preventDefault) {
+                 event.preventDefault();
+             }
+         }
+        }
+       }*/
+        let key;
+        key = event.keyCode;
+        key = String.fromCharCode(key);
+        const regex = /[0-9]|\./;
+        if (! regex.test(key)) {
+            event.returnValue = false;
+            if (event.preventDefault) {
+                event.preventDefault();
+            }
+        }
+        
+   
+     }
 }

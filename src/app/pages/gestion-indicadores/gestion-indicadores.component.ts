@@ -102,6 +102,6 @@ export class GestionIndicadoresComponent implements OnInit{
   }
 
   regresar(){
-
+    this.router.navigate(['/', 'gestion-principal'])
   }
 }
