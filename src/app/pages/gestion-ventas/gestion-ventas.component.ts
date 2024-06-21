@@ -147,7 +147,7 @@ export class GestionVentasComponent implements OnInit{
   }
 
   consultar(){
-    alert('se esta consultado ...');
+  
   }
 
 
@@ -224,7 +224,7 @@ export class GestionVentasComponent implements OnInit{
   }
 
   crear(tipo:string ){
-    alert(tipo);
+   
   }
 
   actualizarR: boolean = false;

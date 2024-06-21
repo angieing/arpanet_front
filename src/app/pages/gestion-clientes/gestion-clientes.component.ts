@@ -129,7 +129,7 @@ export class GestionClientesComponent {
   }
 
   crear(tipo:string ){
-    alert(tipo);
+  
   }
 
 

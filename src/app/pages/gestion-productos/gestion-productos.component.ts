@@ -132,7 +132,7 @@ export class GestionProductosComponent implements OnInit{
   }
 
   crear(tipo:string ){
-    alert(tipo);
+   
   }
 
   actualizarR: boolean = false;

@@ -148,6 +148,7 @@
             required="true"
             readonly="false"
             formControlName="id"
+            (keypress)="validateFormat($event)"
           />
         </mat-form-field>
 
@@ -162,7 +163,7 @@
         <mat-form-field>
           <mat-label>Tipo Identificaci&oacute;n</mat-label>
           <mat-select formControlName="tipoIdentificacion" placeholder="tipoIdentificacion">
-            <mat-option style="z-index: 99999" *ngFor="let tip of listTipoIdentificacion" [value]="tip.id">{{ tip.nombre }}
+            <mat-option style="z-index: 99999" *ngFor="let tip of listTipoIdentificacion" [value]="tip.nombre">{{ tip.nombre }}
             </mat-option>
           </mat-select>
           <mat-error *ngIf="formRegistro.controls['tipoIdentificacion'].errors?.required">

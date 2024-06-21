@@ -99,6 +99,8 @@ export class GestionVendedoresComponent implements OnInit {
         this.services.actualizaVendedor(this.formRegistro).subscribe(
           (resultup: any) => {
             console.log('============>', resultup);
+            Swal.fire({icon: 'info', title: 'Actualizado correctamente',  text: 'ok'});             
+            this.getListVendedores();
           },
           (errorup) => {
             console.log('=======ERROR=====>', errorup);
@@ -110,6 +112,8 @@ export class GestionVendedoresComponent implements OnInit {
         this.services.registrarVendedores(this.formRegistro).subscribe(
           (result: any) => {
             console.log('============>', result);
+            this.getListVendedores();
+            Swal.fire({icon: 'info', title: 'Registrado correctamente',  text: 'ok'});             
           },
           (error) => {
             console.log('=======error=====>', error);
@@ -136,8 +140,7 @@ export class GestionVendedoresComponent implements OnInit {
     );
   }
 
-  consultar() {
-    alert('se esta consultado ...');
+  consultar() {    
   }
 
   filtro: any = '';
@@ -214,7 +217,7 @@ export class GestionVendedoresComponent implements OnInit {
   }
 
   crear(tipo: string) {
-    alert(tipo);
+   
   }
 
   actualizarR: boolean = false;
@@ -237,13 +240,9 @@ export class GestionVendedoresComponent implements OnInit {
           (result: any) => {
             //this.viewDateTableEspanol();
 
-            this.getListVendedores();
-
-            this.toastr.success('Registro borrado correctamente');
-            this.router.navigate(['/', 'gestion-ventas']);
-
-            this.spinner.hide();
-            this.dataSource = new MatTableDataSource<any>(this.listVendedores);
+            this.getListVendedores();            
+            Swal.fire({icon: 'info', title: 'Eliminado correctamente',  text: 'ok'});             
+            this.spinner.hide();            
           },
           (error) => {
             this.spinner.hide();
@@ -254,7 +253,6 @@ export class GestionVendedoresComponent implements OnInit {
       }
     });
 
-    this.router.navigate(['/', 'gestion-vendedores']);
   }
 
   filterTable() {
@@ -265,4 +263,17 @@ export class GestionVendedoresComponent implements OnInit {
       );
     };
   }
+
+  validateFormat(event:any) {    
+      let key;
+      key = event.keyCode;
+      key = String.fromCharCode(key);
+      const regex = /[0-9]|\./;
+      if (! regex.test(key)) {
+          event.returnValue = false;
+          if (event.preventDefault) {
+              event.preventDefault();
+          }
+      }       
+   }
 }
