@@ -147,11 +147,9 @@ export class ServiciosService {
  * @param tipo
  * @returns
  */
-  registrarVentas(form: any) {
-   console.log('MOSTRAR: ',form.value);
+  registrarVentas(form: any) {   
     let items = Object.assign(form.value);
-    let url = `${environment.urlRegistrarVentas}`;
-    console.log('URL: ',url);
+    let url = `${environment.urlRegistrarVentas}`;   
     return this.http.post(url, items).pipe(
           tap((result: any) => (this.registroVentas = result)),
           map((result: any) => result)
@@ -179,11 +177,9 @@ export class ServiciosService {
    * @param tipo
    * @returns
    */
-  registrarVendedores(form: any) {
-    console.log('MOSTRAR: ',form.value);
+  registrarVendedores(form: any) {    
      let items = Object.assign(form.value);
-     let url = `${environment.urlRegistrarVendedores}`;
-     console.log('URL: ',url);
+     let url = `${environment.urlRegistrarVendedores}`;    
      return this.http.post(url, items).pipe(
            tap((result: any) => (this.registroVendedores = result)),
            map((result: any) => result)
@@ -212,11 +208,9 @@ export class ServiciosService {
    * @param tipo
    * @returns
    */
-  registrarClientes(form: any) {
-    console.log('MOSTRAR: ',form.value);
+  registrarClientes(form: any) {    
      let items = Object.assign(form.value);
-     let url = `${environment.urlRegistrarClientes}`;
-     console.log('URL: ',url);
+     let url = `${environment.urlRegistrarClientes}`;     
      return this.http.post(url, items).pipe(
            tap((result: any) => (this.registroClientes = result)),
            map((result: any) => result)
@@ -224,44 +218,36 @@ export class ServiciosService {
    }
 
 
-   actualizaVentas(form: any) {
-    console.log('MOSTRAR: ',form.value);
+   actualizaVentas(form: any) {    
      let items = Object.assign(form.value);
-     let url = `${environment.urlActualizarVentas}${form.value.id}`;
-     console.log('URL: ',url);
+     let url = `${environment.urlActualizarVentas}${form.value.id}`;     
      return this.http.put(url, items).pipe(
            tap((result: any) => (this.registroVentas = result)),
            map((result: any) => result)
          );
    }
 
-   actualizaVendedor(form: any) {
-    console.log('MOSTRAR: ',form.value);
+   actualizaVendedor(form: any) {    
      let items = Object.assign(form.value);
-     let url = `${environment.urlActualizarVendedores}${form.value.id}`;
-     console.log('URL: ',url);
+     let url = `${environment.urlActualizarVendedores}${form.value.id}`;    
      return this.http.put(url, items).pipe(
            tap((result: any) => (this.registroVendedores = result)),
            map((result: any) => result)
          );
    }
 
-   actualizaCliente(form: any) {
-    console.log('MOSTRAR: ',form.value);
+   actualizaCliente(form: any) {    
      let items = Object.assign(form.value);
-     let url = `${environment.urlActualizarClientes}${form.value.id}`;
-     console.log('URL: ',url);
+     let url = `${environment.urlActualizarClientes}${form.value.id}`;     
      return this.http.put(url, items).pipe(
            tap((result: any) => (this.actualizarClientes = result)),
            map((result: any) => result)
          );
    }
 
-   actualizaProducto(form: any) {
-    console.log('MOSTRAR: ',form.value);
+   actualizaProducto(form: any) {    
      let items = Object.assign(form.value);
-     let url = `${environment.urlActualizarProductos}${form.value.id}`;
-     console.log('URL: ',url);
+     let url = `${environment.urlActualizarProductos}${form.value.id}`;     
      return this.http.put(url, items).pipe(
            tap((result: any) => (this.registroProductos = result)),
            map((result: any) => result)
@@ -331,11 +317,9 @@ export class ServiciosService {
    * @param tipo
    * @returns
    */
-  registrarProductos(form: any) {
-    console.log('MOSTRAR: ',form.value);
+  registrarProductos(form: any) {    
      let items = Object.assign(form.value);
-     let url = `${environment.urlRegistrarProductos}`;
-     console.log('URL: ',url);
+     let url = `${environment.urlRegistrarProductos}`;     
      return this.http.post(url, items).pipe(
            tap((result: any) => (this.registroProductos = result)),
            map((result: any) => result)

@@ -52,7 +52,7 @@ export class GestionIndicadoresComponent implements OnInit{
    //this.listarVendedorMasVende();
   }
 
-  listarAnio(anio: Event){console.log("====>  ",(anio.target as HTMLInputElement).value);
+  listarAnio(anio: Event){
     this.services.getBuscarPorAnio((anio.target as HTMLInputElement).value).subscribe(
       (result:any)=>{
         this.listVentas = result;

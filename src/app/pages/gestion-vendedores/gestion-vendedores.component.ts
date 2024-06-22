@@ -89,30 +89,26 @@ export class GestionVendedoresComponent implements OnInit {
    * Método de formulario de registro
    *
    */
-  registrar() {
-    console.log('=====>', this.formRegistro.value.id);
-    if (this.formRegistro.pristine) {
-      console.log('Sin cambios');
+  registrar() {    
+    if (this.formRegistro.pristine) {      
       Swal.fire({ icon: 'info', title: 'No ha hecho ajustes', text: '!' });
     } else {
       if (this.actualizarR) {
         this.services.actualizaVendedor(this.formRegistro).subscribe(
-          (resultup: any) => {
-            console.log('============>', resultup);
+          (resultup: any) => {            
             Swal.fire({icon: 'info', title: 'Actualizado correctamente',  text: 'ok'});             
             this.getListVendedores();
             this.formRegistro.reset();
           },
           (errorup) => {
-            console.log('=======ERROR=====>', errorup);
+            Swal.fire({ icon: 'warning', title: 'Error en la solicitud', text: '!' });
           }
         );
       }
 
       if (!this.actualizarR) {
         this.services.registrarVendedores(this.formRegistro).subscribe(
-          (result: any) => {
-            console.log('============>', result);
+          (result: any) => {            
             this.getListVendedores();
             this.formRegistro.reset();
             Swal.fire({icon: 'info', title: 'Registrado correctamente',  text: 'ok'});             
@@ -137,7 +133,7 @@ export class GestionVendedoresComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
       },
       (error) => {
-        console.log(`Lsita eror:  ${error}`);
+        Swal.fire({ icon: 'warning', title: 'Error en la solicitud', text: '!' });
       }
     );
   }
@@ -194,8 +190,7 @@ export class GestionVendedoresComponent implements OnInit {
   editar2(form: any, modal: any) {  
     this.noEditar = true;  
     for (let obj in form) {
-      for (let f in this.formRegistro.value) {
-        console.log(obj);
+      for (let f in this.formRegistro.value) {       
         if (f == obj) {
           this.formRegistro.get(obj).setValue(form[obj]);
           if (f == 'tipoIdentificacion') {

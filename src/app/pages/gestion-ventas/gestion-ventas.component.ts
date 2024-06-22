@@ -68,35 +68,32 @@ export class GestionVentasComponent implements OnInit{
   }
 
   registrar(){
-    console.log('=====>',this.formRegistro.value.id);
-      if (this.formRegistro.pristine) {
-        console.log('sin cambios');
-        this.toastr.info('No ha cambiado nada');
+   
+      if (this.formRegistro.pristine) {       
+        Swal.fire({ icon: 'info', title: 'No ha cambiado nada', text: '!' });
       } else {
         if(this.actualizarR){
           this.services.actualizaVentas(this.formRegistro).subscribe(
-            (resultup:any)=>{
-              console.log('============>', resultup);
+            (resultup:any)=>{              
               this.getListVentas(); 
               this.formRegistro.reset();
               Swal.fire({icon: 'info', title: 'Actualizado correctamente',  text: 'ok'});             
             },
             (errorup)=>{
-              console.log('=======error=====>', errorup);
+              Swal.fire({ icon: 'warning', title: 'Error en la solicitud', text: '!' });
             }
           );
         }
 
         if(!this.actualizarR){
           this.services.registrarVentas(this.formRegistro).subscribe(
-            (result:any)=>{
-              console.log('=====registar=======>', result);
+            (result:any)=>{             
               this.getListVentas(); 
               this.formRegistro.reset();
               Swal.fire({icon: 'info', title: 'Registrado correctamente',  text: 'ok'});                          
             },
             (error)=>{
-              console.log('=======error=====>', error);
+              Swal.fire({ icon: 'warning', title: 'Error en la solicitud', text: '!' });
             }
           );
         }
@@ -117,7 +114,7 @@ export class GestionVentasComponent implements OnInit{
         //this.dataSource.filterPredicate = this.obtenerFuncionDeBusqueda();
       },
       (error) => {
-        console.log(`Lsita eror:  ${error}`);
+        Swal.fire({ icon: 'warning', title: 'Error en la solicitud', text: '!' });
       }
     );
   }
@@ -130,7 +127,7 @@ export class GestionVentasComponent implements OnInit{
         this.listClientes = result;
       },
       (error) => {
-        console.log(`Lsita eror:  ${error}`);
+        Swal.fire({ icon: 'warning', title: 'Error en la solicitud', text: '!' });
       }
     );
   }
@@ -143,7 +140,7 @@ export class GestionVentasComponent implements OnInit{
         this.listVendedores = result;
       },
       (error) => {
-        console.log(`Lsita eror:  ${error}`);
+        Swal.fire({ icon: 'warning', title: 'Error en la solicitud', text: '!' });
       }
     );
   }
@@ -194,12 +191,9 @@ export class GestionVentasComponent implements OnInit{
     this.modal.dismissAll(modal);
   }
 
-  editar2(form: any , modal: any){
-    console.log(form);
+  editar2(form: any , modal: any){   
     for (let obj in form) {
-
-      for (let f in this.formRegistro.value) {
-        console.log(obj);
+      for (let f in this.formRegistro.value) {        
         if (f == obj) {
           this.formRegistro.get(obj).setValue(form[obj]);
           if (f == 'cliente') {

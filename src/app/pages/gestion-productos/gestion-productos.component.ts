@@ -49,8 +49,7 @@ export class GestionProductosComponent implements OnInit {
  *
  */
   registrar() {
-    if (this.formRegistro.pristine) {
-      console.log('Sin cambios');
+    if (this.formRegistro.pristine) {    
       Swal.fire({ icon: 'info', title: 'No ha hecho ajustes', text: '!' });
     } else {
       if (this.actualizarR) {
@@ -93,7 +92,7 @@ export class GestionProductosComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
       },
       (error) => {
-        console.log(`Lsita eror:  ${error}`);
+        Swal.fire({ icon: 'warning', title: 'Error en la solicitud', text: '!' });
       }
     );
 
@@ -135,16 +134,12 @@ export class GestionProductosComponent implements OnInit {
 
   /**Método para botón editar */
 
-  editar2(form: any, modal: any) {
-    console.log(form);
+  editar2(form: any, modal: any) {    
     for (let obj in form) {
-
-      for (let f in this.formRegistro.value) {
-        console.log(obj);
+      for (let f in this.formRegistro.value) {       
         if (f == obj) {
           this.formRegistro.get(obj).setValue(form[obj]);
         }
-
       }
     }
     //this.modal.open(modal, { size: 'xl', scrollable: true, backdrop: 'static', keyboard: false });

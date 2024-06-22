@@ -71,34 +71,31 @@ export class GestionClientesComponent {
      *
      */
   registrar() {
-    if (this.formRegistro.pristine) {
-      console.log('Sin cambios');
+    if (this.formRegistro.pristine) {      
       Swal.fire({ icon: 'info', title: 'No ha hecho ajustes', text: '!' });
     } else {
       if (this.actualizarR) {
         this.services.actualizaCliente(this.formRegistro).subscribe(
-          (result: any) => {
-            console.log('============>', result);
+          (result: any) => {           
             this.getListClientes();
             this.formRegistro.reset();
             Swal.fire({ icon: 'info', title: 'Actualizado correctamente', text: 'ok' });
           },
           (error) => {
-            console.log('=======error=====>', error);
+            Swal.fire({ icon: 'info', title: 'Error en la solicitud', text: '!' });
           }
         );
       }
 
       if (!this.actualizarR) {
         this.services.registrarClientes(this.formRegistro).subscribe(
-          (result: any) => {
-            console.log('============>', result);
+          (result: any) => {            
             this.getListClientes();
             this.formRegistro.reset();
             Swal.fire({ icon: 'info', title: 'Registrado correctamente', text: 'ok' });
           },
           (error) => {
-            console.log('=======error=====>', error);
+            Swal.fire({ icon: 'warning', title: 'Error en la solicitud ', text: '!' });
           }
         );
       }
@@ -119,7 +116,7 @@ export class GestionClientesComponent {
         this.dataSource.paginator = this.paginator;
       },
       (error) => {
-        console.log(`Lsita eror:  ${error}`);
+        Swal.fire({ icon: 'warning', title: 'Error en la solicitud', text: '!' });
       }
     );
 
