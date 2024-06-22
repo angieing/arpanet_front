@@ -147,11 +147,9 @@ export class ServiciosService {
  * @param tipo
  * @returns
  */
-  registrarVentas(form: any) {
-   console.log('MOSTRAR: ',form.value);
+  registrarVentas(form: any) {   
     let items = Object.assign(form.value);
-    let url = `${environment.urlRegistrarVentas}`;
-    console.log('URL: ',url);
+    let url = `${environment.urlRegistrarVentas}`;   
     return this.http.post(url, items).pipe(
           tap((result: any) => (this.registroVentas = result)),
           map((result: any) => result)
@@ -179,11 +177,9 @@ export class ServiciosService {
    * @param tipo
    * @returns
    */
-  registrarVendedores(form: any) {
-    console.log('MOSTRAR: ',form.value);
+  registrarVendedores(form: any) {    
      let items = Object.assign(form.value);
-     let url = `${environment.urlRegistrarVendedores}`;
-     console.log('URL: ',url);
+     let url = `${environment.urlRegistrarVendedores}`;    
      return this.http.post(url, items).pipe(
            tap((result: any) => (this.registroVendedores = result)),
            map((result: any) => result)
@@ -204,6 +200,7 @@ export class ServiciosService {
     }
 
   registroClientes:any[] = [];
+  actualizarClientes:any [] =[];
   /**
    * Metodo para registrar vendedores en oracle
    * @param form
@@ -211,11 +208,9 @@ export class ServiciosService {
    * @param tipo
    * @returns
    */
-  registrarClientes(form: any) {
-    console.log('MOSTRAR: ',form.value);
+  registrarClientes(form: any) {    
      let items = Object.assign(form.value);
-     let url = `${environment.urlRegistrarClientes}`;
-     console.log('URL: ',url);
+     let url = `${environment.urlRegistrarClientes}`;     
      return this.http.post(url, items).pipe(
            tap((result: any) => (this.registroClientes = result)),
            map((result: any) => result)
@@ -223,44 +218,36 @@ export class ServiciosService {
    }
 
 
-   actualizaVentas(form: any) {
-    console.log('MOSTRAR: ',form.value);
+   actualizaVentas(form: any) {    
      let items = Object.assign(form.value);
-     let url = `${environment.urlActualizarVentas}${form.value.id}`;
-     console.log('URL: ',url);
+     let url = `${environment.urlActualizarVentas}${form.value.id}`;     
      return this.http.put(url, items).pipe(
            tap((result: any) => (this.registroVentas = result)),
            map((result: any) => result)
          );
    }
 
-   actualizaVendedor(form: any) {
-    console.log('MOSTRAR: ',form.value);
+   actualizaVendedor(form: any) {    
      let items = Object.assign(form.value);
-     let url = `${environment.urlActualizarVendedores}${form.value.id}`;
-     console.log('URL: ',url);
+     let url = `${environment.urlActualizarVendedores}${form.value.id}`;    
      return this.http.put(url, items).pipe(
            tap((result: any) => (this.registroVendedores = result)),
            map((result: any) => result)
          );
    }
 
-   actualizaCliente(form: any) {
-    console.log('MOSTRAR: ',form.value);
+   actualizaCliente(form: any) {    
      let items = Object.assign(form.value);
-     let url = `${environment.urlActualizarClientes}${form.value.id}`;
-     console.log('URL: ',url);
+     let url = `${environment.urlActualizarClientes}${form.value.id}`;     
      return this.http.put(url, items).pipe(
-           tap((result: any) => (this.registroClientes = result)),
+           tap((result: any) => (this.actualizarClientes = result)),
            map((result: any) => result)
          );
    }
 
-   actualizaProducto(form: any) {
-    console.log('MOSTRAR: ',form.value);
+   actualizaProducto(form: any) {    
      let items = Object.assign(form.value);
-     let url = `${environment.urlActualizarProductos}${form.value.id}`;
-     console.log('URL: ',url);
+     let url = `${environment.urlActualizarProductos}${form.value.id}`;     
      return this.http.put(url, items).pipe(
            tap((result: any) => (this.registroProductos = result)),
            map((result: any) => result)
@@ -330,15 +317,82 @@ export class ServiciosService {
    * @param tipo
    * @returns
    */
-  registrarProductos(form: any) {
-    console.log('MOSTRAR: ',form.value);
+  registrarProductos(form: any) {    
      let items = Object.assign(form.value);
-     let url = `${environment.urlRegistrarProductos}`;
-     console.log('URL: ',url);
+     let url = `${environment.urlRegistrarProductos}`;     
      return this.http.post(url, items).pipe(
            tap((result: any) => (this.registroProductos = result)),
            map((result: any) => result)
          );
    }
+
+
+   listarIndicadores1:any[] = [];
+     /**
+   * Buscar todas las ventas por un año específico
+   * @returns
+   */
+     getBuscarPorAnio(anio:any): Observable<any[]> {
+      let url = `${environment.urlListarPorAnio}${anio}`;
+      return this.http.get(url).pipe(
+        tap((result: any) => (this.listarIndicadores1 = result)),
+        map((result: any) => result)
+      );
+    }
+
+    listarIndicadores2:any[] = [];
+     /**
+   *  Cual es el vendedor que más ha vendido
+   * @returns
+   */
+     getBuscarVendedorMasVende(): Observable<any[]> {
+      let url = `${environment.urlListarVendedorMasVendido}`;
+      return this.http.get(url).pipe(
+        tap((result: any) => (this.listarIndicadores2 = result)),
+        map((result: any) => result)
+      );
+    }
+
+    listarIndicadores3:any[] = [];
+    /**
+  *   Cuanto se ha vendido en un año específico
+
+  * @returns
+  */
+    getPorAnioEspecifico(anio:any): Observable<any[]> {
+     let url = `${environment.urlListarPorAnioEspecifico}${anio}`;
+     return this.http.get(url).pipe(
+       tap((result: any) => (this.listarIndicadores3 = result)),
+       map((result: any) => result)
+     );
+   }
+
+   listarIndicadores4:any[] = [];
+   /**
+ *    Promedio ventas por cliente
+
+ * @returns
+ */
+   getPromedioVentas(): Observable<any[]> {
+    let url = `${environment.urlListPromedioVentasCliente}`;
+    return this.http.get(url).pipe(
+      tap((result: any) => (this.listarIndicadores4 = result)),
+      map((result: any) => result)
+    );
+  }
+
+
+  listarIndicadores5:any[] = [];
+    /**
+    * Cuanto se ha vendido en un año y mes específico
+    * @returns
+    */
+  getlistarCantidadVentasAnioMesEspecifico(): Observable<any[]> {
+   let url = `${environment.urlListCantidadVentasAnioMes}`;
+   return this.http.get(url).pipe(
+     tap((result: any) => (this.listarIndicadores4 = result)),
+     map((result: any) => result)
+   );
+ }
 
 }

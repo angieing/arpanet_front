@@ -142,12 +142,13 @@
       <div class="col">
         <mat-form-field hintLabel="Max 10 caracteres">
           <mat-label>N&uacute;mero identificaci&oacute;n</mat-label>
-          <input
+          <input 
             matInput
             #id
             required="true"
-            readonly="false"
+            readonly="{{noEditar}}"
             formControlName="id"
+            (keypress)="validateFormat($event)"
           />
         </mat-form-field>
 
@@ -162,7 +163,7 @@
         <mat-form-field>
           <mat-label>Tipo Identificaci&oacute;n</mat-label>
           <mat-select formControlName="tipoIdentificacion" placeholder="tipoIdentificacion">
-            <mat-option style="z-index: 99999" *ngFor="let tip of listTipoIdentificacion" [value]="tip.id">{{ tip.nombre }}
+            <mat-option style="z-index: 99999" *ngFor="let tip of listTipoIdentificacion" [value]="tip.nombre">{{ tip.nombre }}
             </mat-option>
           </mat-select>
           <mat-error *ngIf="formRegistro.controls['tipoIdentificacion'].errors?.required">

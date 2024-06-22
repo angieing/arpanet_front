@@ -89,30 +89,32 @@ export class GestionVendedoresComponent implements OnInit {
    * Método de formulario de registro
    *
    */
-  registrar() {
-    console.log('=====>', this.formRegistro.value.id);
-    if (this.formRegistro.pristine) {
-      console.log('Sin cambios');
-      this.toastr.info('No ha cambiado nada');
+  registrar() {    
+    if (this.formRegistro.pristine) {      
+      Swal.fire({ icon: 'info', title: 'No ha hecho ajustes', text: '!' });
     } else {
       if (this.actualizarR) {
         this.services.actualizaVendedor(this.formRegistro).subscribe(
-          (resultup: any) => {
-            console.log('============>', resultup);
+          (resultup: any) => {            
+            Swal.fire({icon: 'info', title: 'Actualizado correctamente',  text: 'ok'});             
+            this.getListVendedores();
+            this.formRegistro.reset();
           },
           (errorup) => {
-            console.log('=======ERROR=====>', errorup);
+            Swal.fire({ icon: 'warning', title: 'Error en la solicitud', text: '!' });
           }
         );
       }
 
       if (!this.actualizarR) {
         this.services.registrarVendedores(this.formRegistro).subscribe(
-          (result: any) => {
-            console.log('============>', result);
+          (result: any) => {            
+            this.getListVendedores();
+            this.formRegistro.reset();
+            Swal.fire({icon: 'info', title: 'Registrado correctamente',  text: 'ok'});             
           },
           (error) => {
-            console.log('=======error=====>', error);
+            Swal.fire({icon: 'warning', title: 'Error',  text: '!'});  
           }
         );
       }
@@ -131,13 +133,12 @@ export class GestionVendedoresComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
       },
       (error) => {
-        console.log(`Lsita eror:  ${error}`);
+        Swal.fire({ icon: 'warning', title: 'Error en la solicitud', text: '!' });
       }
     );
   }
 
-  consultar() {
-    alert('se esta consultado ...');
+  consultar() {    
   }
 
   filtro: any = '';
@@ -185,11 +186,11 @@ export class GestionVendedoresComponent implements OnInit {
     this.modal.dismissAll(modal);
   }
 
-  editar2(form: any, modal: any) {
-    console.log(form);
+  noEditar:boolean = false;
+  editar2(form: any, modal: any) {  
+    this.noEditar = true;  
     for (let obj in form) {
-      for (let f in this.formRegistro.value) {
-        console.log(obj);
+      for (let f in this.formRegistro.value) {       
         if (f == obj) {
           this.formRegistro.get(obj).setValue(form[obj]);
           if (f == 'tipoIdentificacion') {
@@ -201,20 +202,21 @@ export class GestionVendedoresComponent implements OnInit {
     let enviarIdRegistro = this.formRegistro.value;
     enviarIdRegistro.id = form.id;
 
-    this.modal.open(modal, {
+    /*this.modal.open(modal, {
       size: 'xl',
       scrollable: true,
       backdrop: 'static',
       keyboard: false,
-    });
+    });*/
   }
 
   limpiar() {
     this.formRegistro.reset();
+    this.noEditar = false;
   }
 
   crear(tipo: string) {
-    alert(tipo);
+   
   }
 
   actualizarR: boolean = false;
@@ -237,13 +239,9 @@ export class GestionVendedoresComponent implements OnInit {
           (result: any) => {
             //this.viewDateTableEspanol();
 
-            this.getListVendedores();
-
-            this.toastr.success('Registro borrado correctamente');
-            this.router.navigate(['/', 'gestion-ventas']);
-
-            this.spinner.hide();
-            this.dataSource = new MatTableDataSource<any>(this.listVendedores);
+            this.getListVendedores();            
+            Swal.fire({icon: 'info', title: 'Eliminado correctamente',  text: 'ok'});             
+            this.spinner.hide();            
           },
           (error) => {
             this.spinner.hide();
@@ -254,7 +252,6 @@ export class GestionVendedoresComponent implements OnInit {
       }
     });
 
-    this.router.navigate(['/', 'gestion-vendedores']);
   }
 
   filterTable() {
@@ -265,4 +262,17 @@ export class GestionVendedoresComponent implements OnInit {
       );
     };
   }
+
+  validateFormat(event:any) {    
+      let key;
+      key = event.keyCode;
+      key = String.fromCharCode(key);
+      const regex = /[0-9]|\./;
+      if (! regex.test(key)) {
+          event.returnValue = false;
+          if (event.preventDefault) {
+              event.preventDefault();
+          }
+      }       
+   }
 }

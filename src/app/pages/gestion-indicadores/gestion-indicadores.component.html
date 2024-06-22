@@ -1,0 +1,220 @@
+<div class="container">
+    <mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel #panel1>
+            <mat-expansion-panel-header class="expansion-panel-header" [collapsedHeight]="customCollapsedHeight"
+                [expandedHeight]="customExpandedHeight">
+                <mat-panel-title> Consulta Indicadores </mat-panel-title>
+                <mat-panel-description>
+                    Indicadores
+                    <mat-icon (click)="regresar()" matTooltip="Regresar"
+                        [matTooltipPosition]="'below'">keyboard_backspace</mat-icon>
+                    <mat-icon>account_circle</mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title> Datos Consulta </mat-panel-title>
+                    <mat-panel-description>
+                        Buscar todas las ventas por un año específico
+                        <mat-icon>map</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <mat-form-field>
+                    <mat-label>Filtrar</mat-label>
+                    <input type="number" matInput (blur)="listarAnio($event)" placeholder="Buscar por: Anio" #input>
+                  </mat-form-field>
+
+                <div class="">
+                    <table id="tabla" class="table table-bordered table-hover">
+                        <caption></caption>
+
+                        <thead>
+                            <tr>
+                                <th>Registro #</th>
+                                <th>Tipo ID</th>
+                                <th>Cliente</th>
+                                <th>Impuestos</th>
+                                <th>SubTotal</th>
+                                <th>Total</th>
+                                <th>Fecha</th>
+                                <th>Tipo ID</th>                                                              
+                                <th>Vendedor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let p of listVentas ; let i = index">
+                                <td>{{ p.id }}</td>
+                                <td>{{ p.tipo_clientes }}</td>
+                                <td>{{ p.cliente }}</td>
+                                <td>{{ p.impuestos }}</td>
+                                <td>$ {{ p.subtotal }}</td>   
+                                <td>$ {{ p.total }}</td>   
+                                <td>{{ p.fecha }}</td>     
+                                <td>{{ p.tipo_vendedor }}</td>                                                                                                                    
+                                <td>{{ p.vendedor }}</td>                                                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </mat-expansion-panel>
+
+
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title> Datos Consulta </mat-panel-title>
+                    <mat-panel-description>
+                        Cual es el vendedor que más ha vendido
+                        <mat-icon>map</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+              
+                  <button type="button" data-toggle="modal" class="btn btn-secondary btn-round btn-fab btn-sm" matTooltip="Consultar"
+                    [matTooltipPosition]="'below'" (click)="listarVendedorMasVende()">
+                    <mat-icon>timeline</mat-icon>
+                    </button>
+
+                <div class="">
+                    <table id="tabla" class="table table-bordered table-hover">
+                        <caption></caption>
+
+                        <thead>
+                            <tr>
+                                
+                                <th>Identificaci&oacute;n</th>
+                                <th>Nombres</th>                                
+                                <th>Total</th>                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let p of listVendedorMasVende ; let i = index">
+                                <td>{{ p.id }}</td>
+                                <td>{{ p.nombres}}   {{ p.apellidos}}</td>
+                                <td>$ {{ p.totalVentas }}</td>                                                                                               
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title> Datos Consulta </mat-panel-title>
+                    <mat-panel-description>
+                        Cuanto se ha vendido en un año específico
+                        <mat-icon>map</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+              
+                <mat-form-field>
+                    <mat-label>Filtrar</mat-label>
+                    <input type="number" matInput (blur)="listarPorAnioEspecifico($event)" placeholder="Buscar por: Anio" #input>
+                </mat-form-field>
+                  
+
+                <div class="">
+                    <table id="tabla" class="table table-bordered table-hover">
+                        <caption></caption>
+
+                        <thead>
+                            <tr>
+                                
+                                <th>A&nacute;o</th>
+                                <th>SubTotal</th> 
+                                <th>Impuestos</th>                                  
+                                <th>Total</th>                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let p of listPorAnioEspecifico ; let i = index">
+                                <td>{{ p.anio }}</td>
+                                <td>{{ p.subtotal}} </td>
+                                <td>{{ p.impuestos }}</td> 
+                                <td>$ {{ p.total }}</td>                                                                                                  
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </mat-expansion-panel>
+
+
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title> Datos Consulta </mat-panel-title>
+                    <mat-panel-description>
+                        Promedio ventas por cliente
+                        <mat-icon>map</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+              
+                <button type="button" data-toggle="modal" class="btn btn-secondary btn-round btn-fab btn-sm" matTooltip="Consultar"
+                [matTooltipPosition]="'below'" (click)="listarPromedioVentas()">
+                <mat-icon>timeline</mat-icon>
+                </button>
+                  
+
+                <div class="">
+                    <table id="tabla" class="table table-bordered table-hover">
+                        <caption></caption>
+
+                        <thead>
+                            <tr>
+                                
+                                <th>Identificaci&oacute;n</th>
+                                <th>Nombres</th> 
+                                <th>Promedio</th>                                                                                                  
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let pro of listPromedioVentas ; let i = index">
+                                <td>{{ pro.cliente }}</td>
+                                <td>{{ pro.nombres}} </td>
+                                <td>{{ pro.total }}</td>                                                                                                                           
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title> Datos Consulta </mat-panel-title>
+                    <mat-panel-description>
+                        Cuanto se ha vendido en un año y mes específico
+                        <mat-icon>map</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+              
+                <button type="button" data-toggle="modal" class="btn btn-secondary btn-round btn-fab btn-sm" matTooltip="Consultar"
+                [matTooltipPosition]="'below'" (click)="listarCantidadVentasAnioMesEspecifico()">
+                <mat-icon>timeline</mat-icon>
+                </button>
+                  
+
+                <div class="">
+                    <table id="tabla" class="table table-bordered table-hover">
+                        <caption></caption>
+
+                        <thead>
+                            <tr>                                
+                                <th>A&nacute;o</th>
+                                <th>Mes</th> 
+                                <th>Total</th>                                                                                                  
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let can of listCantidadVentasAnioMesEspecifico ; let i = index">
+                                <td>{{ can.anio }}</td>
+                                <td>{{ can.mes}} </td>
+                                <td>$ {{ can.total }}</td>                                                                                                                         
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </mat-expansion-panel>
+
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

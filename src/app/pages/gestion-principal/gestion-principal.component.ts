@@ -66,4 +66,13 @@ export class GestionPrincipalComponent implements OnInit{
 
   }
 
+  gestionarIndicadores(){
+    this.router.navigate(['/','gestion-indicadores']);
+  }
+
+  
+  regresar(){
+    this.router.navigate(['/', 'login'])
+  }
+
 }

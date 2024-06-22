@@ -45,6 +45,7 @@ import { GestionProductosComponent } from './gestion-productos/gestion-productos
 import { GestionVendedoresComponent } from './gestion-vendedores/gestion-vendedores.component';
 import { GestionVentasComponent } from './gestion-ventas/gestion-ventas.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { GestionIndicadoresComponent } from './gestion-indicadores/gestion-indicadores.component';
 @NgModule({ declarations: [
         TemplateComponent,
         PagesComponent,
@@ -54,6 +55,7 @@ import { MatMenuModule } from '@angular/material/menu';
         GestionProductosComponent,
         GestionVendedoresComponent,
         GestionVentasComponent,
+        GestionIndicadoresComponent,
         SpinerComponent
     ],
     exports: [TemplateComponent], imports: [CommonModule,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ServiciosService } from 'src/app/services/servicios.service';
 import { environment } from 'src/environments/environment';
@@ -24,16 +24,15 @@ export class GestionLoginComponent implements OnInit{
 
   constructor(
     public serviceLogin : ServiciosService,
-    /*
+    
     private route : ActivatedRoute,
     private spinner : NgxSpinnerService,
-    public router : Router,
+    /*public router : Router,
     public toastr : ToastrService,
     private serviceAuth : AutenticacionService,
     private modal : NgbModal,
     private changeDetector: ChangeDetectorRef,
-    config: NgbModalConfig*/
-    private spinner : NgxSpinnerService,
+    config: NgbModalConfig*/ 
 
     public router : Router,
     public toastr : ToastrService
@@ -50,17 +49,14 @@ export class GestionLoginComponent implements OnInit{
     this.spinner.show();
     this.serviceLogin.validarCredenciales(this.formLogin.get('user').value,  this.formLogin.get('pass').value).subscribe(
       (result:any)=>{
-        this.spinner.hide();
-        console.log('entra correcto', result);
+        this.spinner.hide();        
         //localStorage.setItem('rolUser',result.obj[0].nombre);
         this.router.navigate(['/', 'gestion-principal']);
         //localStorage.setItem('user', this.formLogin.get('user').value);
         //localStorage.setItem('token', result.token);
         //localStorage.setItem('creado','ok');
       },
-      (error)=>{
-        console.log('entra incorrecto');
-        console.log(error);
+      (error)=>{        
         this.spinner.hide();
         this.formLogin.reset();
         localStorage.clear();

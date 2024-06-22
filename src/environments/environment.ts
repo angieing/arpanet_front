@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  /*urlLocal: 'http://localhost:9091',
-  urlTunelLocal: 'https://xhnsfd78-9091.use.devtunnels.ms',
+  urlLocal: 'http://localhost:9091',
+  /*urlTunelLocal: 'https://xhnsfd78-9091.use.devtunnels.ms',
   urlApi: 'http://localhost:8085/api/tecnica/entrar',
   urlApiListarComercios: 'http://localhost:8085/api/tecnica/listarcomercios',
   urlListaVentas:'http://localhost:9091/ventas/listar',
@@ -16,10 +16,23 @@ export const environment = {
   urlRegistrarClientes: 'http://localhost:9091/clientes/crear',
   urlListarClientes: 'http://localhost:9091/clientes/listar',
   urlRegistrarProductos: 'http://localhost:9091/productos/crear',
+  urlDeleteVentas: 'http://localhost:9091/ventas/',
   urlListarProductos: 'http://localhost:9091/productos/listar',
-  */
 
-  urlLocal: 'https://xhnsfd78-9091.use.devtunnels.ms',
+  urlActualizarVentas: 'http://localhost:9091/ventas/',
+  urlDeleteVendedores: 'http://localhost:9091/vendedores/',
+  urlDeleteClientes: 'http://localhost:9091/clientes/',
+  urlDeleteProductos: 'http://localhost:9091/productos/',
+  urlActualizarVendedores: 'http://localhost:9091/vendedores/',
+  urlActualizarClientes: 'http://localhost:9091/clientes/',
+  urlActualizarProductos: 'http://localhost:9091/productos/',
+  urlListarPorAnio: 'http://localhost:9091/ventas/buscar/',
+  urlListarVendedorMasVendido: 'http://localhost:9091/ventas/ver-mas-vendido',
+  urlListarPorAnioEspecifico: 'http://localhost:9091/ventas/anio-especifico/',
+  urlListPromedioVentasCliente: 'http://localhost:9091/ventas/promedio-ventas-cliente',
+  urlListCantidadVentasAnioMes: 'http://localhost:9091/ventas/anio-mes',*/
+
+  //urlLocal: 'https://xhnsfd78-9091.use.devtunnels.ms',
   urlTunelLocal: 'https://xhnsfd78-9091.use.devtunnels.ms',
   urlApi: 'https://xhnsfd78-9091.use.devtunnels.ms/api/tecnica/entrar',
   urlApiListarComercios: 'https://xhnsfd78-9091.use.devtunnels.ms/api/tecnica/listarcomercios',
@@ -40,7 +53,11 @@ export const environment = {
   urlActualizarVendedores: 'https://xhnsfd78-9091.use.devtunnels.ms/vendedores/',
   urlActualizarClientes: 'https://xhnsfd78-9091.use.devtunnels.ms/clientes/',
   urlActualizarProductos: 'https://xhnsfd78-9091.use.devtunnels.ms/productos/',
-
+  urlListarPorAnio: 'https://xhnsfd78-9091.use.devtunnels.ms/ventas/buscar/',
+  urlListarVendedorMasVendido: 'https://xhnsfd78-9091.use.devtunnels.ms/ventas/ver-mas-vendido',
+  urlListarPorAnioEspecifico: 'https://xhnsfd78-9091.use.devtunnels.ms/ventas/anio-especifico/',
+  urlListPromedioVentasCliente: 'https://xhnsfd78-9091.use.devtunnels.ms/ventas/promedio-ventas-cliente',
+  urlListCantidadVentasAnioMes: 'https://xhnsfd78-9091.use.devtunnels.ms/ventas/anio-mes',
 
   //etiquetas formularios
   usuario: 'Usuario',

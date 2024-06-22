@@ -140,7 +140,7 @@
       <div class="col">
         <mat-form-field hintLabel="Max 10 caracteres">
           <mat-label>Subtotal</mat-label>
-          <input matInput #subtotal required="true" formControlName="subtotal" />
+          <input matInput #subtotal required="true" formControlName="subtotal" (keypress)="validateFormat($event)"  (blur)="calcularTotalImpuesto($event)"/>
         </mat-form-field>
 
         <div *ngIf="formRegistro.controls['subtotal'].errors">
@@ -153,7 +153,7 @@
       <div class="col">
         <mat-form-field hintLabel="Max 10 caracteres">
           <mat-label>Impuestos</mat-label>
-          <input matInput #impuestos required="true" formControlName="impuestos" />
+          <input matInput #impuestos required="true" formControlName="impuestos" (keypress)="validateFormat($event)"  (keyup)="calcularTotalImpuesto($event)"/>
         </mat-form-field>
 
         <div *ngIf="formRegistro.controls['impuestos'].errors">
@@ -166,7 +166,8 @@
       <div class="col">
         <mat-form-field hintLabel="Max 103 caracteres">
           <mat-label>Total</mat-label>
-          <input matInput #total required="true" formControlName="total" />
+          <input matInput #total required="true" readonly="true" formControlName="total" (keypress)="validateFormat($event)
+        "/>
         </mat-form-field>
 
         <div *ngIf="formRegistro.controls['total'].errors">
@@ -182,7 +183,7 @@
         <mat-form-field>
           <mat-label>Clientes</mat-label>
           <mat-select formControlName="cliente" placeholder="Clientes">
-            <mat-option style="z-index: 99999" *ngFor="let ite of listClientes" [value]="ite.id">{{ ite.nombres }}
+            <mat-option style="z-index: 99999" *ngFor="let ite of listClientes" [value]="ite.id">{{ ite.id }} - {{ ite.nombres }}
             </mat-option>
           </mat-select>
           <mat-error *ngIf="formRegistro.controls['cliente'].errors?.required">
@@ -195,7 +196,7 @@
         <mat-form-field>
           <mat-label>Vendedor</mat-label>
           <mat-select formControlName="vendedor" placeholder="vendedor">
-            <mat-option style="z-index: 99999" *ngFor="let itev of listVendedores" [value]="itev.id">{{ itev.nombres }}
+            <mat-option style="z-index: 99999" *ngFor="let itev of listVendedores" [value]="itev.id">{{ itev.id }} - {{ itev.nombres }}
             </mat-option>
           </mat-select>
           <mat-error *ngIf="formRegistro.controls['vendedor'].errors?.required">
@@ -203,7 +204,7 @@
           </mat-error>
         </mat-form-field>
       </div>
-      <div class="col">
+      <!--div class="col">
         <mat-label>Tipo Vendedor</mat-label>
         <mat-form-field hintLabel="Max 10 caracteres">
           <input matInput #nombres formControlName="tipo_vendedor" />
@@ -227,7 +228,7 @@
             <p style="color: F44336">Debe ingresar datos.</p>
           </mat-error>
         </div>
-      </div>
+      </div-->
 
 
     </div>
